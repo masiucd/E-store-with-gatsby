@@ -632,7 +632,7 @@
     "@babel/helper-builder-binary-assignment-operator-visitor" "^7.10.1"
     "@babel/helper-plugin-utils" "^7.10.1"
 
-"@babel/plugin-transform-flow-strip-types@^7.0.0":
+"@babel/plugin-transform-flow-strip-types@^7.0.0", "@babel/plugin-transform-flow-strip-types@^7.10.1":
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.10.1.tgz#59eafbff9ae85ec8932d4c16c068654be814ec5e"
   integrity sha512-i4o0YwiJBIsIx7/liVCZ3Q2WkWr1/Yu39PksBOnh/khW2SwIFsGa5Ze+MSon5KbDfrEHP9NeyefAgvUSXzaEkw==
@@ -955,6 +955,14 @@
     invariant "^2.2.2"
     levenary "^1.1.1"
     semver "^5.5.0"
+
+"@babel/preset-flow@^7.10.1":
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.10.1.tgz#29498ec23baf9aa6dae50c568ceba09d71692b82"
+  integrity sha512-FuQsibb5PaX07fF1XUO5gjjxdEZbcJv8+ugPDaeFEsBIvUTib8hCtEJow/c2F0jq9ZUjpHCQ8IQKNHRvKE1kJQ==
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.10.1"
+    "@babel/plugin-transform-flow-strip-types" "^7.10.1"
 
 "@babel/preset-modules@^0.1.3":
   version "0.1.3"
@@ -3334,6 +3342,22 @@ babel-preset-fbjs@^3.3.0:
     "@babel/plugin-transform-spread" "^7.0.0"
     "@babel/plugin-transform-template-literals" "^7.0.0"
     babel-plugin-syntax-trailing-function-commas "^7.0.0-beta.0"
+
+babel-preset-gatsby-package@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/babel-preset-gatsby-package/-/babel-preset-gatsby-package-0.4.5.tgz#9eedc11b5349ffc1ae3445fdc89a58ff3559587d"
+  integrity sha512-BxKBxUr7+sAaEcbS/N85fFgikJ/adyKQ/JDOqn90Zn+6kWT6Nywgp5CYAD7DfvkpjABIyw6n/1QXDSD/M5RkdA==
+  dependencies:
+    "@babel/plugin-proposal-nullish-coalescing-operator" "^7.10.1"
+    "@babel/plugin-proposal-optional-chaining" "^7.10.1"
+    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
+    "@babel/plugin-transform-runtime" "^7.10.1"
+    "@babel/plugin-transform-typescript" "^7.10.1"
+    "@babel/preset-env" "^7.10.2"
+    "@babel/preset-flow" "^7.10.1"
+    "@babel/preset-react" "^7.10.1"
+    babel-plugin-dynamic-import-node "^2.3.3"
+    core-js "^2.6.11"
 
 babel-preset-gatsby@^0.4.9:
   version "0.4.9"
@@ -6907,7 +6931,7 @@ gatsby-core-utils@^1.3.5:
     proper-lockfile "^4.1.1"
     xdg-basedir "^4.0.0"
 
-gatsby-core-utils@^1.3.6:
+gatsby-core-utils@^1.3.6, gatsby-core-utils@^1.3.7:
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/gatsby-core-utils/-/gatsby-core-utils-1.3.7.tgz#235797092a8566454229fff0959f669089225c91"
   integrity sha512-AF8cLRlVzH8xAGLGxa9YbY3Pkf1PaqqI/fGGBPsvsh4C4vx6yoOjNOMQ3KaG4pSc/0EYeVafV7De0H7IU+CfUQ==
@@ -6970,6 +6994,15 @@ gatsby-link@^2.4.6:
     "@babel/runtime" "^7.10.2"
     "@types/reach__router" "^1.3.3"
     prop-types "^15.7.2"
+
+gatsby-node-helpers@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-node-helpers/-/gatsby-node-helpers-0.3.0.tgz#3bdca3b7902a702a5834fef280ad66d51099d57c"
+  integrity sha1-O9yjt5AqcCpYNP7ygK1m1RCZ1Xw=
+  dependencies:
+    json-stringify-safe "^5.0.1"
+    lodash "^4.17.4"
+    p-is-promise "^1.1.0"
 
 gatsby-page-utils@^0.2.9:
   version "0.2.9"
@@ -7215,6 +7248,27 @@ gatsby-source-filesystem@^2.3.11:
     valid-url "^1.0.9"
     xstate "^4.10.0"
 
+gatsby-source-filesystem@^2.3.13:
+  version "2.3.13"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.3.13.tgz#e90c9e0b39b2889af6aa93440f81ee16da5410ea"
+  integrity sha512-x4YrPX8Y0Q32iO7E2lpOpIzT0C3RCcZtmHHrCdvkgGcOUSerEAEWHnBWYG2FQqnGsJ+YPBGwC2a2ENN4sLfc4Q==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    better-queue "^3.8.10"
+    bluebird "^3.7.2"
+    chokidar "3.4.0"
+    file-type "^12.4.2"
+    fs-extra "^8.1.0"
+    gatsby-core-utils "^1.3.7"
+    got "^9.6.0"
+    md5-file "^3.2.3"
+    mime "^2.4.6"
+    pretty-bytes "^5.3.0"
+    progress "^2.0.3"
+    read-chunk "^3.2.0"
+    valid-url "^1.0.9"
+    xstate "^4.10.0"
+
 gatsby-source-graphql@^2.5.4:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/gatsby-source-graphql/-/gatsby-source-graphql-2.5.4.tgz#fc2eba5e6128bbe2af06c7e1405fca4370fba5dc"
@@ -7229,6 +7283,20 @@ gatsby-source-graphql@^2.5.4:
     invariant "^2.2.4"
     node-fetch "^1.7.3"
     uuid "^3.4.0"
+
+gatsby-source-shopify@^3.2.13:
+  version "3.2.13"
+  resolved "https://registry.yarnpkg.com/gatsby-source-shopify/-/gatsby-source-shopify-3.2.13.tgz#18ad1358083a4c46d07c6fe26e3bede6c9ca7950"
+  integrity sha512-lkGcDeR1nB9P+i1df2vmw/BRimeotJqFvkwNyaGeJy/PWXyBXT51XsPnNua5mAuqA/uTmv+zNKMNul0mf/GutQ==
+  dependencies:
+    babel-preset-gatsby-package "^0.4.5"
+    chalk "^2.4.2"
+    gatsby-node-helpers "^0.3.0"
+    gatsby-source-filesystem "^2.3.13"
+    graphql-request "^1.8.2"
+    lodash "^4.17.15"
+    p-iteration "^1.1.8"
+    prettyjson "^1.2.1"
 
 gatsby-source-stripe@^3.1.1:
   version "3.1.1"
@@ -7775,7 +7843,7 @@ graphql-playground-middleware-express@^1.7.15:
   dependencies:
     graphql-playground-html "1.6.25"
 
-graphql-request@^1.5.0:
+graphql-request@^1.5.0, graphql-request@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-1.8.2.tgz#398d10ae15c585676741bde3fc01d5ca948f8fbe"
   integrity sha512-dDX2M+VMsxXFCmUX0Vo0TopIZIX4ggzOtiCsThgtrKR4niiaagsGTDIHj3fsOMFETpa064vzovI+4YV4QnMbcg==
@@ -10783,6 +10851,11 @@ p-is-promise@^1.1.0:
   resolved "https://registry.yarnpkg.com/p-is-promise/-/p-is-promise-1.1.0.tgz#9c9456989e9f6588017b0434d56097675c3da05e"
   integrity sha1-nJRWmJ6fZYgBewQ01WCXZ1w9oF4=
 
+p-iteration@^1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/p-iteration/-/p-iteration-1.1.8.tgz#14df726d55af368beba81bcc92a26bb1b48e714a"
+  integrity sha512-IMFBSDIYcPNnW7uWYGrBqmvTiq7W0uB0fJn6shQZs7dlF3OvrHOre+JT9ikSZ7gZS3vWqclVgoQSvToJrns7uQ==
+
 p-limit@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-3.0.1.tgz#584784ac0722d1aed09f19f90ed2999af6ce2839"
@@ -11720,6 +11793,14 @@ pretty-format@^25.5.0:
     ansi-regex "^5.0.0"
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
+
+prettyjson@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/prettyjson/-/prettyjson-1.2.1.tgz#fcffab41d19cab4dfae5e575e64246619b12d289"
+  integrity sha1-/P+rQdGcq0365eV15kJGYZsS0ok=
+  dependencies:
+    colors "^1.1.2"
+    minimist "^1.2.0"
 
 private@^0.1.8:
   version "0.1.8"
@@ -13055,6 +13136,11 @@ shell-quote@1.6.1:
     array-map "~0.0.0"
     array-reduce "~0.0.0"
     jsonify "~0.0.0"
+
+shopify-buy@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/shopify-buy/-/shopify-buy-2.10.0.tgz#ed5e434e6f9b11de6626f5dfe8dc6a01a6f6a607"
+  integrity sha512-ZusCW1qxnlXrEqeeo3OoK7DbkAhppSrzhHHtDbOMpZXj91WEPZr8vQG9+IbeQXq/j+H3/wpzOJ+kF3WGrsDB7w==
 
 short-uuid@^3.1.1:
   version "3.1.1"
