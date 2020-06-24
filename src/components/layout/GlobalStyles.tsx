@@ -33,7 +33,6 @@ const GlobalStyles = createGlobalStyle`
     }
     h1{
       font-size: ${props => props.theme.size.h1};
-
     }
     h2{
       font-size: ${props => props.theme.size.h2};
