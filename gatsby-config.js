@@ -5,9 +5,11 @@ module.exports = {
   siteMetadata: {
     title: `Masiu's fits`,
     titleTemplate: "%s · Masiu's Fits",
+    siteUrl: 'https://marcellable.com',
     description: `Find all you need and what you really want!`,
-    author: `@marcellciszek`,
-    twitter: `https://twitter.com/CiszekMarcell`,
+    author: `@CiszekMarcell`,
+    twitter: `@CiszekMarcell`,
+    image: `/images/demo.png`,
   },
   plugins: [
     'gatsby-plugin-stripe',

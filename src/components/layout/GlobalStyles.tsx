@@ -11,11 +11,11 @@ const GlobalStyles = createGlobalStyle`
     }
     html {
       font-size: ${props => props.theme.appSize};
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Montserrat', sans-serif;
     }
     body {
       box-sizing: border-box;
-      font-family: 'Nunito', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       padding: 0;
       margin: 0;
       height: 100%;
@@ -33,7 +33,7 @@ const GlobalStyles = createGlobalStyle`
     }
     h1{
       font-size: ${props => props.theme.size.h1};
-      font-family: 'Bellota', cursive;
+
     }
     h2{
       font-size: ${props => props.theme.size.h2};

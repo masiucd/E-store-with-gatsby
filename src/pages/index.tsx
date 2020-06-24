@@ -1,8 +1,10 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 import { IFixedObject } from 'gatsby-background-image';
-import Img from 'gatsby-image';
+
 import Layout, { Page } from '../components/layout';
+import Seo from '../components/SEO/Seo';
+import FeatureProducts from '../components/home/FeatureProducts';
 interface ImgData {
   id: string;
   localFile: {
@@ -35,16 +37,11 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
 
   return (
     <Layout>
+      <Seo title="Masiu's fits" description="Home page" />
       <h1>Hi people</h1>
       <Page>
         {edges.map(({ node }) => (
-          <div key={node.id}>
-            <Img
-              fixed={node.images[0].localFile.childImageSharp.fixed}
-              alt={node.title}
-            />
-            <h3>{node.title}</h3>
-          </div>
+          <FeatureProducts key={node.id} data={node} />
         ))}
       </Page>
     </Layout>
