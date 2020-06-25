@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { primaryTheme } from '../../utils/styled/themes';
 import GlobalStyles from './GlobalStyles';
 import { handleFlex } from '../../utils/styled/flex';
-
+import Nav from './nav';
 interface Props {
   children: React.ReactNode;
 }
@@ -26,6 +26,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <ThemeProvider theme={primaryTheme}>
       <GlobalStyles />
+      <Nav className="Navbar" />
       <Main>{children}</Main>
     </ThemeProvider>
   );

@@ -55,7 +55,7 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
 
 export const PAGE_QUERY = graphql`
   {
-    products: allShopifyProduct {
+    products: allShopifyProduct(limit: 3) {
       edges {
         node {
           id

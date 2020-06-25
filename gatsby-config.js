@@ -10,6 +10,20 @@ module.exports = {
     author: `@CiszekMarcell`,
     twitter: `@CiszekMarcell`,
     image: `/images/demo.png`,
+    paths: [
+      {
+        text: 'products',
+        path: '/products',
+      },
+      {
+        text: 'faq',
+        path: '/faq',
+      },
+      {
+        text: 'about',
+        path: '/about',
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-stripe',
