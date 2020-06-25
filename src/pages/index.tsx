@@ -13,10 +13,15 @@ interface ImgData {
     };
   };
 }
+
+interface Price {
+  price: string;
+}
 interface Product {
   id: string;
   title: string;
   description: string;
+  variants: Array<Price>;
   publishedAt: string;
   images: Array<ImgData>;
 }
@@ -56,6 +61,9 @@ export const PAGE_QUERY = graphql`
           id
           title
           description
+          variants {
+            price
+          }
           publishedAt(formatString: "YYYY do, MMMM")
           images {
             id
