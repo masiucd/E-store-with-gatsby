@@ -5,6 +5,8 @@ import { IFixedObject } from 'gatsby-background-image';
 import Layout, { Page } from '../components/layout';
 import Seo from '../components/SEO/Seo';
 import FeatureProducts from '../components/home/FeatureProducts';
+import Hero from '../components/elements/Hero';
+import Title from '../components/elements/Title';
 interface ImgData {
   id: string;
   localFile: {
@@ -30,6 +32,11 @@ interface Node {
 }
 
 interface Props {
+  site: {
+    siteMetadata: {
+      title: string;
+    };
+  };
   products: {
     edges: Node[];
   };
@@ -38,12 +45,17 @@ interface Props {
 const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
   const {
     products: { edges },
+    site: {
+      siteMetadata: { title },
+    },
   } = data;
 
   return (
     <Layout>
       <Seo title="Masiu's fits" description="Home page" />
-      <h1>Hi people</h1>
+      <Hero className="Main hero" isLarge>
+        <Title className="Home__Title" mainTitle={title} />
+      </Hero>
       <Page>
         {edges.map(({ node }) => (
           <FeatureProducts key={node.id} data={node} />
@@ -55,6 +67,11 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
 
 export const PAGE_QUERY = graphql`
   {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     products: allShopifyProduct(limit: 3) {
       edges {
         node {
