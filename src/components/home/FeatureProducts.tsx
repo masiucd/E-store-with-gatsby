@@ -72,7 +72,6 @@ const StyledFeatureProducts = styled.section`
   margin: 4rem auto;
   border: 2px solid red;
   ${below.medium`
-
     ${handleFlex('column', 'center', 'center')};
   `}
 `;
