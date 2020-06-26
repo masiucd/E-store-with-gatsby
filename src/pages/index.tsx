@@ -7,29 +7,6 @@ import Seo from '../components/SEO/Seo';
 import FeatureProducts from '../components/home/FeatureProducts';
 import Hero from '../components/elements/Hero';
 import Title from '../components/elements/Title';
-interface ImgData {
-  id: string;
-  localFile: {
-    childImageSharp: {
-      fixed: IFixedObject;
-    };
-  };
-}
-
-interface Price {
-  price: string;
-}
-interface Product {
-  id: string;
-  title: string;
-  description: string;
-  variants: Array<Price>;
-  publishedAt: string;
-  images: Array<ImgData>;
-}
-interface Node {
-  node: Product;
-}
 
 interface Props {
   site: {
@@ -37,14 +14,10 @@ interface Props {
       title: string;
     };
   };
-  products: {
-    edges: Node[];
-  };
 }
 
 const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
   const {
-    products: { edges },
     site: {
       siteMetadata: { title },
     },
@@ -57,9 +30,7 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
         <Title className="Home__Title" mainTitle={title} needCta />
       </Hero>
       <Page>
-        {edges.map(({ node }) => (
-          <FeatureProducts key={node.id} data={node} />
-        ))}
+        <FeatureProducts />
       </Page>
     </Layout>
   );
@@ -70,29 +41,6 @@ export const PAGE_QUERY = graphql`
     site {
       siteMetadata {
         title
-      }
-    }
-    products: allShopifyProduct(limit: 3) {
-      edges {
-        node {
-          id
-          title
-          description
-          variants {
-            price
-          }
-          publishedAt(formatString: "YYYY do, MMMM")
-          images {
-            id
-            localFile {
-              childImageSharp {
-                fixed(width: 300) {
-                  ...GatsbyImageSharpFixed_tracedSVG
-                }
-              }
-            }
-          }
-        }
       }
     }
   }

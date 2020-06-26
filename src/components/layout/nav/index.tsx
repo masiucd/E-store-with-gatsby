@@ -105,7 +105,7 @@ export default styled(Nav)`
   }
   #cart {
     position: absolute;
-    top: 0.5rem;
+    top: 3.5rem;
     right: 7rem;
     cursor: pointer;
     z-index: 100;
@@ -113,7 +113,7 @@ export default styled(Nav)`
   #navToggle {
     position: fixed;
     /* position: absolute; */
-    top: 0.5rem;
+    top: 3.5rem;
     right: 1rem;
     cursor: pointer;
     z-index: 100;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InputStyles } from '../../styled/Input';
 import styled from 'styled-components';
+import { below } from '../../../utils/styled/media';
 interface Props {
   type?: string;
   placeholder?: string;
@@ -36,6 +37,9 @@ const InputWrapper = styled.div`
       text-align: center;
     }
   }
+  ${below.small`
+    display: none;
+  `}
 `;
 
 export default Search;
