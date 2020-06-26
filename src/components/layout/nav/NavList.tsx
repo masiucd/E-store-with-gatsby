@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import { Link } from 'gatsby';
 import { handleFlex } from '../../../utils/styled/flex';
+import SocialList from './SocialList';
 
 interface Path {
   text: string;
@@ -36,6 +37,7 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle }) => {
           </li>
         ))}
       </ListStyles>
+      <SocialList />
     </StyledNavList>
   );
 };

@@ -2,12 +2,14 @@ import { css } from 'styled-components';
 
 export const handleHref = (imgName: string) => {
   switch (imgName) {
-    case 'jonkri':
+    case 'insta':
       return 'https://github.com/masiuciszek';
-    case 'avancera':
+    case 'devil':
       return 'https://masiuciszek.com/';
-    case 'marcellable':
-      return 'https://marcellable.com';
+    case 'twitter':
+      return 'https://twitter.com/CiszekMarcell';
+    case 'facebook':
+      return 'https://twitter.com/CiszekMarcell';
     default:
       return 'https://github.com/masiuciszek';
   }

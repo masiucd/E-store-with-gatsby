@@ -6,6 +6,7 @@ import useToggle from '../../../hooks/useToggle';
 import Img from 'gatsby-image';
 import { IFixedObject } from 'gatsby-background-image';
 import { handleFlex } from '../../../utils/styled/flex';
+import Search from './Search';
 interface Props {
   className: string;
 }
@@ -42,14 +43,18 @@ const Nav: React.FC<Props> = ({ className }) => {
     navIcons,
   } = useStaticQuery<NavQuery>(NAV_QUERY);
   const [on, toggle] = useToggle(false);
-  const [a, b] = navIcons.edges;
+  const [a, b, c] = navIcons.edges;
 
   return (
     <nav className={className}>
       <div className="title">
         <h3> {title} </h3>
       </div>
+      <Search type="text" placeholder="Search product" />
       <NavList on={on} onPaths={paths} onTitle={title} />
+      <div id="cart">
+        <Img fixed={a.node.childImageSharp.fixed} />
+      </div>
       <div id="navToggle" onClick={toggle}>
         <Img fixed={b.node.childImageSharp.fixed} />
       </div>
@@ -84,20 +89,33 @@ const NAV_QUERY = graphql`
 `;
 
 export default styled(Nav)`
-  padding: 1rem 2rem;
+  padding: 2.5rem 2rem;
   position: relative;
   background: ${({ theme: { colors } }) => colors.primary};
   color: ${({ theme: { colors } }) => colors.text};
-  ${handleFlex('row', 'space-around', 'center')};
+
+  /* ${handleFlex('row', 'space-around', 'center')}; */
+  display: grid;
+  grid-template-columns: 200px 1fr auto auto;
+
   .title {
     width: 100%;
     font-family: 'Montserrat Alternates', sans-serif;
     text-transform: capitalize;
   }
-  #navToggle {
+  #cart {
     position: absolute;
+    top: 0.5rem;
+    right: 7rem;
+    cursor: pointer;
+    z-index: 100;
+  }
+  #navToggle {
+    position: fixed;
+    /* position: absolute; */
     top: 0.5rem;
     right: 1rem;
     cursor: pointer;
+    z-index: 100;
   }
 `;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { handleFlex } from '../../utils/styled/flex';
-import { Link } from 'gatsby';
+import { MyLink } from '../styled/Buttons';
 
 interface Props {
   className: string;
@@ -26,16 +26,19 @@ const Title: React.FC<Props> = ({
       <h3>{secondaryTitle}</h3>
       {needCta && (
         <CtaWrapper>
-          <Link to={pathname || '/'}>{ctaText || 'Products'}</Link>
+          <MyLink to={pathname || '/products'}>{ctaText || 'Products'}</MyLink>
         </CtaWrapper>
       )}
     </section>
   );
 };
 
-const CtaWrapper = styled.div``;
+const CtaWrapper = styled.div`
+  width: 20vmax;
+  padding: 2rem 1rem;
+`;
 
 export default styled(Title)`
-  /* ${handleFlex('column', 'center', 'center')}; */
+  ${handleFlex('column', 'center', 'center')};
   color: ${({ theme: { colors } }) => colors.text};
 `;

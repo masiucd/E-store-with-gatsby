@@ -54,7 +54,7 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
     <Layout>
       <Seo title="Masiu's fits" description="Home page" />
       <Hero className="Main hero" isLarge>
-        <Title className="Home__Title" mainTitle={title} />
+        <Title className="Home__Title" mainTitle={title} needCta />
       </Hero>
       <Page>
         {edges.map(({ node }) => (
