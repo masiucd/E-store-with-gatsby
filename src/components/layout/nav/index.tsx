@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import NavList from './NavList';
 import useToggle from '../../../hooks/useToggle';
 import Img from 'gatsby-image';
@@ -49,16 +49,19 @@ const Nav: React.FC<Props> = ({ className }) => {
   return (
     <nav className={className}>
       <div className="title">
-        <h3> {title} </h3>
+        <h3>
+          {' '}
+          <Link to="/">{title}</Link>{' '}
+        </h3>
       </div>
       <div id="navToggle" onClick={toggle}>
-        <Img fixed={c.node.childImageSharp.fixed} />
+        <Img fixed={b.node.childImageSharp.fixed} />
       </div>
       <Search type="text" placeholder="Search product" />
       <NavList on={on} onPaths={paths} onTitle={title} onToggle={toggle} />
       <Icons>
+        <Img fixed={c.node.childImageSharp.fixed} />
         <Img fixed={a.node.childImageSharp.fixed} />
-        <Img fixed={b.node.childImageSharp.fixed} />
       </Icons>
     </nav>
   );
@@ -125,6 +128,10 @@ export default styled(Nav)`
     padding: 1.5rem .5rem;
     h3{
       position: relative;
+      a{
+        color: ${({ theme: { colors } }) => colors.text};
+        font-size: 3rem;
+      }
     }
     ${below.medium`
       h3{
