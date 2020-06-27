@@ -8,6 +8,7 @@ interface Props {
   className: string;
   children: React.ReactNode;
   isLarge?: boolean;
+  img?: IFluidObject | IFluidObject[];
 }
 
 interface HeroQuery {
@@ -18,13 +19,16 @@ interface HeroQuery {
   };
 }
 
-const Hero: React.FC<Props> = ({ className, children, isLarge }) => {
+const Hero: React.FC<Props> = ({ className, children, isLargem, img }) => {
   const {
     heroImg: { childImageSharp },
   } = useStaticQuery<HeroQuery>(HERO_QUERY);
 
   return (
-    <GatsbyBgImage fluid={childImageSharp.fluid} className={className}>
+    <GatsbyBgImage
+      fluid={img ? img : childImageSharp.fluid}
+      className={className}
+    >
       {children}
     </GatsbyBgImage>
   );
@@ -49,9 +53,9 @@ export default styled(Hero)`
       ? `linear-gradient(rgba(36, 64, 111, 0.3), rgba(9, 1, 00, 0.7))`
       : 'none'};
   width: 100%;
-  min-height: ${props => (props.isLarge ? 'calc(90vh - 80px)' : '50vh')};
+  min-height: ${props => (props.isLarge ? 'calc(90vh - 80px)' : '65vh')};
   background-repeat: repeat-y;
-  background-position: bottom;
+  background-position: ${props => (props.isLarge ? 'bottom' : 'center')};
   background-size: cover;
   opacity: 1 !important;
 `;
