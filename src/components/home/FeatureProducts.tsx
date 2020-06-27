@@ -23,7 +23,13 @@ interface Product {
   id: string;
   title: string;
   description: string;
-  variants: Array<Price>;
+  handle: string;
+  priceRange: {
+    maxVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
   publishedAt: string;
   images: Array<ImgData>;
 }
@@ -57,6 +63,7 @@ const FeatureProducts: React.FC = () => {
 const Wrapper = styled.div`
   ${handleFlex('column', 'center', 'center')};
   padding: 2rem 1rem;
+  border: 2px solid blue;
   width: 100%;
   h3 {
     font-size: 3rem;
@@ -84,8 +91,12 @@ const FEATURE_QUERY = graphql`
           id
           title
           description
-          variants {
-            price
+          handle
+          priceRange {
+            maxVariantPrice {
+              amount
+              currencyCode
+            }
           }
           publishedAt(formatString: "YYYY do, MMMM")
           images {

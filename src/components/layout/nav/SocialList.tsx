@@ -39,9 +39,9 @@ const SocialList: React.FC = () => {
 };
 
 const StyledSocialList = styled.ul`
-  ${handleFlex('row', 'space-evenly', 'center')};
+  ${handleFlex('row', 'space-between', 'center')};
   padding: 3rem;
-  width: calc(100% - 20%);
+  width: calc(100% - 10px);
   transition: ${({ theme }) => theme.transition.quickTransition};
   li {
   }

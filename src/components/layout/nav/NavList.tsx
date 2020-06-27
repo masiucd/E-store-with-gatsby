@@ -14,9 +14,10 @@ interface Props {
   on: boolean;
   onTitle: string;
   onPaths: Path[];
+  onToggle: () => void;
 }
 
-const NavList: React.FC<Props> = ({ on, onPaths, onTitle }) => {
+const NavList: React.FC<Props> = ({ on, onPaths, onTitle, onToggle }) => {
   const { x, opacity } = useSpring({
     x: on ? 0 : 1000,
     opacity: on ? 1 : 0,
@@ -25,7 +26,7 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle }) => {
   return (
     <StyledNavList
       style={{
-        transform: x.interpolate(x => `translate3d(${x * -1}%,0,0)`),
+        transform: x.interpolate(x => `translate3d(${x * 1}%,0,0)`),
         opacity,
       }}
     >
@@ -38,16 +39,19 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle }) => {
         ))}
       </ListStyles>
       <SocialList />
+      <div id="close-logo" onClick={onToggle}>
+        ⤫
+      </div>
     </StyledNavList>
   );
 };
 
 const StyledNavList = styled(animated.section)`
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
   height: 100%;
-  width: 45vmax;
+  width: 30vmax;
   background: ${({ theme: { colors } }) => colors.primary};
   color: ${({ theme: { colors } }) => colors.text};
   z-index: 100;
@@ -55,6 +59,13 @@ const StyledNavList = styled(animated.section)`
   #list-title {
     font-size: 4em;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.text};
+  }
+  #close-logo {
+    position: absolute;
+    top: 0;
+    font-size: 6rem;
+    left: 2rem;
+    cursor: pointer;
   }
 `;
 
