@@ -58,14 +58,15 @@ const StyledNavList = styled(animated.section)`
   ${handleFlex('column', 'center', 'center')};
   #list-title {
     font-size: 4em;
-    border-bottom: 2px solid ${({ theme: { colors } }) => colors.text};
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
   }
   #close-logo {
     position: absolute;
     top: 0;
     font-size: 6rem;
-    left: 2rem;
+    right: 2rem;
     cursor: pointer;
+    color: ${({ theme: { colors } }) => colors.secondary};
   }
 `;
 
@@ -95,6 +96,7 @@ const ListStyles = styled.ul`
     }
     &:hover {
       &:after {
+        background: ${({ theme: { colors } }) => colors.secondary};
         width: 100%;
         padding: 0.1rem;
         height: 3px;

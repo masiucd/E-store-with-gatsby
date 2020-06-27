@@ -5,3 +5,8 @@
  */
 
 // You can delete this file if you're not using it
+import React from 'react';
+import { SearchProvider } from './src/context/SearchProvider';
+export const WrapRootElement = ({ element }) => {
+  return <SearchProvider>{element}</SearchProvider>;
+};

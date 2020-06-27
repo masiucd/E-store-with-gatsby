@@ -128,6 +128,7 @@ export default styled(Nav)`
     padding: 1.5rem .5rem;
     h3{
       position: relative;
+      border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
       a{
         color: ${({ theme: { colors } }) => colors.text};
         font-size: 3rem;
