@@ -9,14 +9,17 @@ interface Product {
   title: string;
   handle: string;
 }
+interface Node {
+  node: Product;
+}
 
 type Action =
-  | { type: 'FILTER_PRODUCTS'; payload: Product[] }
+  | { type: 'SET_PRODUCTS'; payload: Node[] }
   | { type: 'CLEAR_FILTER' };
 
 type Dispatch = (action: Action) => void;
 
-type State = { filteredResults: (Product | Product[])[] };
+type State = { filteredResults: (Node | Node[])[] };
 
 const SearchStateContext = React.createContext<State | undefined>(undefined);
 const SearchDispatchContext = React.createContext<Dispatch | undefined>(
@@ -29,7 +32,7 @@ const initialState: State = {
 
 function searchReducer(state: State, action: Action) {
   switch (action.type) {
-    case 'FILTER_PRODUCTS':
+    case 'SET_PRODUCTS':
       return {
         ...state,
         filteredResults: [...state.filteredResults, action.payload],

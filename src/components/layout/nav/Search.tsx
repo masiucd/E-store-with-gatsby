@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { InputStyles } from '../../styled/Input';
 import styled from 'styled-components';
-import { below } from '../../../utils/styled/media';
 import { handleFlex } from '../../../utils/styled/flex';
-import { useSearchState } from '../../../context/SearchProvider';
+import {
+  useSearchState,
+  useSearchDispatch,
+} from '../../../context/SearchProvider';
 import { graphql, useStaticQuery } from 'gatsby';
 interface Props {
   type?: string;
@@ -27,9 +29,35 @@ interface Query {
 
 const Search: React.FC<Props> = ({ type, placeholder }) => {
   const [text, setText] = React.useState<string>('');
-  const [products, setProducts] = React.useState<Product[]>([]);
-  const x = useSearchState();
-  const query = useStaticQuery<Query>(SEARCH_QUERY);
+  const { filteredResults } = useSearchState();
+  const dispatch = useSearchDispatch();
+  const {
+    products: { edges },
+  } = useStaticQuery<Query>(SEARCH_QUERY);
+
+  const searchProduct = (text: string) => {
+    let filtered = edges.filter(({ node }) => {
+      let regex = new RegExp(`${text}`, 'ig');
+      return node.title.match(regex) || node.handle.match(regex);
+    });
+
+    dispatch({ type: 'SET_PRODUCTS', payload: filtered });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setText(e.target.value);
+    if (e.target.value !== '') {
+      searchProduct(text);
+    } else {
+      dispatch({ type: 'CLEAR_FILTER' });
+    }
+  };
+
+  React.useEffect(() => {
+    if (filteredResults === []) {
+      setText('');
+    }
+  }, [filteredResults]);
 
   return (
     <InputWrapper>
@@ -37,9 +65,7 @@ const Search: React.FC<Props> = ({ type, placeholder }) => {
         type={type || 'text'}
         placeholder={placeholder || '..text'}
         value={text}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setText(e.target.value)
-        }
+        onChange={handleChange}
       />
       <Box>
         <span>🐙</span>
