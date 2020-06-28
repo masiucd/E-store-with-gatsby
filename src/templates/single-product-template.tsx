@@ -7,6 +7,11 @@ import { IFluidObject } from 'gatsby-background-image';
 interface Variant {
   sku: string;
   title: string;
+  price: string;
+  priceV2: {
+    amount: string;
+    currencyCode: string;
+  };
   image: {
     localFile: {
       childImageSharp: {
@@ -19,6 +24,7 @@ interface Variant {
 interface Props {
   shopifyProduct: {
     title: string;
+    description: string;
     createdAt: string;
     priceRange: {
       maxVariantPrice: {
@@ -46,6 +52,7 @@ export const PRODUCTS_QUERY = graphql`
   query($handle: String!) {
     shopifyProduct(handle: { eq: $handle }) {
       title
+      description
       createdAt(formatString: "YYYY MM do")
       priceRange {
         maxVariantPrice {
@@ -59,6 +66,11 @@ export const PRODUCTS_QUERY = graphql`
       variants {
         sku
         title
+        price
+        priceV2 {
+          amount
+          currencyCode
+        }
         image {
           localFile {
             childImageSharp {

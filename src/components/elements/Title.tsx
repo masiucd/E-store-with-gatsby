@@ -10,6 +10,7 @@ interface Props {
   needCta?: boolean;
   pathname?: string;
   ctaText?: string;
+  textShadow?: boolean;
 }
 
 const Title: React.FC<Props> = ({
@@ -19,6 +20,7 @@ const Title: React.FC<Props> = ({
   needCta,
   pathname,
   ctaText,
+  textShadow,
 }) => {
   return (
     <section className={className}>
@@ -41,4 +43,10 @@ const CtaWrapper = styled.div`
 export default styled(Title)`
   ${handleFlex('column', 'center', 'center')};
   color: ${({ theme: { colors } }) => colors.text};
+  h1,
+  h3 {
+    text-shadow: 2px 2px 3px
+      ${({ theme, textShadow }) =>
+        textShadow ? theme.colors.secondary : 'none'};
+  }
 `;

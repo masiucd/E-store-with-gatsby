@@ -4,9 +4,17 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Hero from '../elements/Hero';
 import Title from '../elements/Title';
+import Details from './Details';
+import { handleFlex } from '../../utils/styled/flex';
+import { below } from '../../utils/styled/media';
 interface Variant {
   sku: string;
   title: string;
+  price: string;
+  priceV2: {
+    amount: string;
+    currencyCode: string;
+  };
   image: {
     localFile: {
       childImageSharp: {
@@ -19,6 +27,7 @@ interface Variant {
 interface Props {
   onShopifyProduct: {
     title: string;
+    description: string;
     createdAt: string;
     priceRange: {
       maxVariantPrice: {
@@ -36,12 +45,12 @@ interface Props {
 const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
   const {
     title,
-    createdAt,
     variants,
     priceRange: {
       maxVariantPrice: { amount, currencyCode },
     },
   } = onShopifyProduct;
+
   return (
     <StyledProduct>
       <Hero
@@ -52,17 +61,28 @@ const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
           className={title}
           mainTitle={title}
           secondaryTitle={`${amount} ${currencyCode} `}
+          textShadow
         />
       </Hero>
-      <ImageWrapper>
-        <Img fluid={variants[0].image.localFile.childImageSharp.fluid} />
-      </ImageWrapper>
+      <Body>
+        <ImageWrapper>
+          <Img fluid={variants[0].image.localFile.childImageSharp.fluid} />
+        </ImageWrapper>
+
+        <Details data={onShopifyProduct} />
+      </Body>
     </StyledProduct>
   );
 };
 
 const StyledProduct = styled.section`
   width: 100%;
+  ${handleFlex('column', 'center', 'center')};
+  height: 100%;
+`;
+
+const Body = styled.div`
+  height: 100%;
 `;
 
 const ImageWrapper = styled.div`
@@ -70,6 +90,11 @@ const ImageWrapper = styled.div`
   position: absolute;
   bottom: 0;
   left: 1rem;
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  ${below.medium`
+    left: 50%;
+    transform: translate(-50%,-50%);
+  `}
 `;
 
 export default SingleProduct;
