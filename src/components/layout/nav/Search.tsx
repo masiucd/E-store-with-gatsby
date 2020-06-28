@@ -3,13 +3,34 @@ import { InputStyles } from '../../styled/Input';
 import styled from 'styled-components';
 import { below } from '../../../utils/styled/media';
 import { handleFlex } from '../../../utils/styled/flex';
+import { useSearchState } from '../../../context/SearchProvider';
+import { graphql, useStaticQuery } from 'gatsby';
 interface Props {
   type?: string;
   placeholder?: string;
 }
 
+interface Product {
+  id: string;
+  title: string;
+  handle: string;
+}
+interface Node {
+  node: Product;
+}
+
+interface Query {
+  products: {
+    edges: Array<Node>;
+  };
+}
+
 const Search: React.FC<Props> = ({ type, placeholder }) => {
   const [text, setText] = React.useState<string>('');
+  const [products, setProducts] = React.useState<Product[]>([]);
+  const x = useSearchState();
+  const query = useStaticQuery<Query>(SEARCH_QUERY);
+
   return (
     <InputWrapper>
       <InputStyles
@@ -60,6 +81,20 @@ const Box = styled.div`
     position: relative;
     top: 6px;
     border: 2px solid ${({ theme }) => theme.colors.secondary};
+  }
+`;
+
+const SEARCH_QUERY = graphql`
+  {
+    products: allShopifyProduct {
+      edges {
+        node {
+          id
+          title
+          handle
+        }
+      }
+    }
   }
 `;
 

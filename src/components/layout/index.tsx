@@ -4,6 +4,8 @@ import { primaryTheme } from '../../utils/styled/themes';
 import GlobalStyles from './GlobalStyles';
 import { handleFlex } from '../../utils/styled/flex';
 import Nav from './nav';
+import { SearchProvider } from '../../context/SearchProvider';
+
 interface Props {
   children: React.ReactNode;
 }
@@ -25,9 +27,11 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, []);
   return (
     <ThemeProvider theme={primaryTheme}>
-      <GlobalStyles />
-      <Nav className="Navbar" />
-      <Main>{children}</Main>
+      <SearchProvider>
+        <GlobalStyles />
+        <Nav className="Navbar" />
+        <Main>{children}</Main>
+      </SearchProvider>
     </ThemeProvider>
   );
 };
