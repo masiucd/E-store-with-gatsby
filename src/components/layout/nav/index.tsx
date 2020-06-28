@@ -8,8 +8,7 @@ import { IFixedObject } from 'gatsby-background-image';
 import { handleFlex } from '../../../utils/styled/flex';
 import Search from './Search';
 import { below } from '../../../utils/styled/media';
-import { useSearchState } from '../../../context/SearchProvider';
-import ProductShowCase from './ProductShowCase';
+
 interface Props {
   className: string;
 }
@@ -65,7 +64,6 @@ const Nav: React.FC<Props> = ({ className }) => {
         <Img fixed={c.node.childImageSharp.fixed} />
         <Img fixed={a.node.childImageSharp.fixed} />
       </Icons>
-      <ProductShowCase />
     </nav>
   );
 };
@@ -112,13 +110,12 @@ const Icons = styled.div`
 
 export default styled(Nav)`
   padding: 2.5rem 2rem;
-  position: relative;
   background: ${({ theme: { colors } }) => colors.primary};
   color: ${({ theme: { colors } }) => colors.text};
-
-  /* ${handleFlex('row', 'space-around', 'center')}; */
+  position: relative;
+  height: 18rem;
   display: grid;
-  grid-template-columns: 200px 1fr 200px ;
+  grid-template-columns: 200px 1fr 200px;
   grid-template-rows: auto;
   ${below.medium`
     grid-template-columns: 20px 1fr 200px ;
@@ -128,11 +125,11 @@ export default styled(Nav)`
     width: 100%;
     font-family: 'Montserrat Alternates', sans-serif;
     text-transform: capitalize;
-    padding: 1.5rem .5rem;
-    h3{
+    padding: 1.5rem 0.5rem;
+    h3 {
       position: relative;
       border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
-      a{
+      a {
         color: ${({ theme: { colors } }) => colors.text};
         font-size: 3rem;
       }
@@ -153,7 +150,7 @@ export default styled(Nav)`
   #navToggle {
     position: fixed;
     /* position: absolute; */
-    top: .5rem;
+    top: 0.5rem;
     left: 2rem;
     cursor: pointer;
     z-index: 100;

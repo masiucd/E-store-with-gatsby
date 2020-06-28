@@ -9,6 +9,7 @@ import {
 } from '../../../context/SearchProvider';
 import { graphql, useStaticQuery } from 'gatsby';
 import { IFixedObject } from 'gatsby-background-image';
+import ProductShowCase from './ProductShowCase';
 interface Props {
   type?: string;
   placeholder?: string;
@@ -70,19 +71,27 @@ const Search: React.FC<Props> = ({ type, placeholder }) => {
   }, [filteredResults]);
 
   return (
-    <InputWrapper>
-      <InputStyles
-        type={type || 'text'}
-        placeholder={placeholder || '..text'}
-        value={text}
-        onChange={handleChange}
-      />
-      <Box>
-        <Img fixed={fixed} alt="Search icon" />
-      </Box>
-    </InputWrapper>
+    <SearchContainer>
+      <InputWrapper>
+        <InputStyles
+          type={type || 'text'}
+          placeholder={placeholder || '..text'}
+          value={text}
+          onChange={handleChange}
+        />
+        <Box>
+          <Img fixed={fixed} alt="Search icon" />
+        </Box>
+      </InputWrapper>
+      <ProductShowCase />
+    </SearchContainer>
   );
 };
+
+const SearchContainer = styled.div`
+  ${handleFlex('column', 'center', 'center')};
+  position: relative;
+`;
 
 const InputWrapper = styled.div`
   align-self: center;
