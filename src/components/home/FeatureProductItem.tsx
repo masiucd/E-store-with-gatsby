@@ -45,7 +45,7 @@ const FeatureProductItem: React.FC<Props> = ({ productData }) => {
       maxVariantPrice: { amount, currencyCode },
     },
   } = productData;
-  console.log(handle);
+
   return (
     <StyledItem>
       <Img fixed={images[0].localFile.childImageSharp.fixed} alt={title} />

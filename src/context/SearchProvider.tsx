@@ -19,7 +19,7 @@ type Action =
 
 type Dispatch = (action: Action) => void;
 
-type State = { filteredResults: (Node | Node[])[] };
+type State = { filteredResults: Node[] };
 
 const SearchStateContext = React.createContext<State | undefined>(undefined);
 const SearchDispatchContext = React.createContext<Dispatch | undefined>(
@@ -35,7 +35,7 @@ function searchReducer(state: State, action: Action) {
     case 'SET_PRODUCTS':
       return {
         ...state,
-        filteredResults: [...state.filteredResults, action.payload],
+        filteredResults: action.payload,
       };
     case 'CLEAR_FILTER':
       return {

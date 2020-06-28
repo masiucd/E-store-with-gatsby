@@ -8,6 +8,8 @@ import { IFixedObject } from 'gatsby-background-image';
 import { handleFlex } from '../../../utils/styled/flex';
 import Search from './Search';
 import { below } from '../../../utils/styled/media';
+import { useSearchState } from '../../../context/SearchProvider';
+import ProductShowCase from './ProductShowCase';
 interface Props {
   className: string;
 }
@@ -63,6 +65,7 @@ const Nav: React.FC<Props> = ({ className }) => {
         <Img fixed={c.node.childImageSharp.fixed} />
         <Img fixed={a.node.childImageSharp.fixed} />
       </Icons>
+      <ProductShowCase />
     </nav>
   );
 };

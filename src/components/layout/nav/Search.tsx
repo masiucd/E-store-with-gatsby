@@ -2,11 +2,13 @@ import * as React from 'react';
 import { InputStyles } from '../../styled/Input';
 import styled from 'styled-components';
 import { handleFlex } from '../../../utils/styled/flex';
+import Img from 'gatsby-image';
 import {
   useSearchState,
   useSearchDispatch,
 } from '../../../context/SearchProvider';
 import { graphql, useStaticQuery } from 'gatsby';
+import { IFixedObject } from 'gatsby-background-image';
 interface Props {
   type?: string;
   placeholder?: string;
@@ -22,6 +24,11 @@ interface Node {
 }
 
 interface Query {
+  searchIcon: {
+    childImageSharp: {
+      fixed: IFixedObject;
+    };
+  };
   products: {
     edges: Array<Node>;
   };
@@ -33,6 +40,9 @@ const Search: React.FC<Props> = ({ type, placeholder }) => {
   const dispatch = useSearchDispatch();
   const {
     products: { edges },
+    searchIcon: {
+      childImageSharp: { fixed },
+    },
   } = useStaticQuery<Query>(SEARCH_QUERY);
 
   const searchProduct = (text: string) => {
@@ -68,7 +78,7 @@ const Search: React.FC<Props> = ({ type, placeholder }) => {
         onChange={handleChange}
       />
       <Box>
-        <span>🐙</span>
+        <Img fixed={fixed} alt="Search icon" />
       </Box>
     </InputWrapper>
   );
@@ -93,6 +103,7 @@ const InputWrapper = styled.div`
 `;
 
 const Box = styled.div`
+  position: relative;
   background: transparent;
   border: 2px solid ${({ theme }) => theme.colors.text};
   width: 54px;
@@ -112,6 +123,13 @@ const Box = styled.div`
 
 const SEARCH_QUERY = graphql`
   {
+    searchIcon: file(relativePath: { eq: "search-icon.png" }) {
+      childImageSharp {
+        fixed(width: 25, height: 25) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     products: allShopifyProduct {
       edges {
         node {
