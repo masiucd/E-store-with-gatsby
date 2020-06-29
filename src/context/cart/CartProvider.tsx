@@ -28,7 +28,7 @@ export interface CartItem {
   description: string;
   shopifyId: string;
   createdAt: string;
-  qty: number; // TODO: if it is possible
+  qty: number;
   priceRange: {
     maxVariantPrice: {
       amount: string;
@@ -45,11 +45,12 @@ type Action =
   | { type: 'ADD_CART_ITEM'; payload: CartItem }
   | { type: 'CLEAR_CART' }
   | { type: 'DELETE_ITEM_FROM_CART'; payload: string } // id - DELETE thw whole product from cart
-  | { type: 'REMOVE_CART_ITEM'; payload: CartItem };
+  | { type: 'REMOVE_CART_ITEM'; payload: CartItem }
+  | { type: 'IS_OPEN' };
 
 type Dispatch = (action: Action) => void;
 
-type State = { cart: CartItem[] };
+type State = { cart: CartItem[]; isOpen: boolean };
 
 const CartStateContext = React.createContext<State | undefined>(undefined);
 const CartDispatchContext = React.createContext<Dispatch | undefined>(
@@ -58,6 +59,7 @@ const CartDispatchContext = React.createContext<Dispatch | undefined>(
 
 const initialState: State = {
   cart: [],
+  isOpen: false,
 };
 
 function cartReducer(state: State, action: Action) {
@@ -72,12 +74,18 @@ function cartReducer(state: State, action: Action) {
         ...state,
         cart: removeCartItem(state.cart, action.payload),
       };
+
     case 'DELETE_ITEM_FROM_CART':
       return {
         ...state,
         cart: state.cart.filter(
           cartItem => cartItem.shopifyId !== action.payload
         ),
+      };
+    case 'IS_OPEN':
+      return {
+        ...state,
+        isOpen: !state.isOpen,
       };
     default: {
       throw new Error(`Unable action type `);

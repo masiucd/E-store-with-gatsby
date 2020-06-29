@@ -8,6 +8,12 @@ import { IFixedObject } from 'gatsby-background-image';
 import { handleFlex } from '../../../utils/styled/flex';
 import Search from './Search';
 import { below } from '../../../utils/styled/media';
+import { countCartItems } from '../../../context/cart/utils';
+import {
+  useCartState,
+  useCartDispatch,
+} from '../../../context/cart/CartProvider';
+import CartDropDown from '../../cart/CartDropDown';
 
 interface Props {
   className: string;
@@ -46,6 +52,8 @@ const Nav: React.FC<Props> = ({ className }) => {
   } = useStaticQuery<NavQuery>(NAV_QUERY);
   const [on, toggle] = useToggle(false);
   const [a, b, c] = navIcons.edges;
+  const { cart } = useCartState();
+  const dispatch = useCartDispatch();
 
   return (
     <nav className={className}>
@@ -61,9 +69,15 @@ const Nav: React.FC<Props> = ({ className }) => {
       <Search type="text" placeholder="Search product" />
       <NavList on={on} onPaths={paths} onTitle={title} onToggle={toggle} />
       <Icons>
-        <Img fixed={c.node.childImageSharp.fixed} />
-        <Img fixed={a.node.childImageSharp.fixed} />
+        <div className="col">
+          <Img fixed={c.node.childImageSharp.fixed} />
+        </div>
+        <div className="col" onClick={() => dispatch({ type: 'IS_OPEN' })}>
+          <Img fixed={a.node.childImageSharp.fixed} />
+          <span id="cart-amount">{countCartItems(cart)}</span>
+        </div>
       </Icons>
+      <CartDropDown />
     </nav>
   );
 };
@@ -106,6 +120,14 @@ const Icons = styled.div`
       margin-right: 2rem;
     }
   `}
+  .col {
+    ${handleFlex('row', 'center', 'center')};
+
+    span {
+      margin-left: 1rem;
+      font-size: 2rem;
+    }
+  }
 `;
 
 export default styled(Nav)`

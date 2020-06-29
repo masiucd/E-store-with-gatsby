@@ -1,4 +1,4 @@
-import { Variant, CartItem } from './Cart.Provider';
+import { Variant, CartItem } from './CartProvider';
 
 export const addItemToCart = (
   cartItems: CartItem[],
@@ -38,4 +38,11 @@ export const removeCartItem = (
       ? { ...item, qty: item.qty - 1 }
       : item
   );
+};
+
+export const countCartItems = (cartItems: CartItem[]) => {
+  return cartItems.reduce((qty, item) => qty + item.qty, 0);
+};
+export const countCartTotalPricePerItem = (cartItems: CartItem[]) => {
+  return cartItems.reduce((qty, item) => qty + item.qty * item.qty, 0);
 };

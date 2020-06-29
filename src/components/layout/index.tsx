@@ -5,7 +5,7 @@ import GlobalStyles from './GlobalStyles';
 import { handleFlex } from '../../utils/styled/flex';
 import Nav from './nav';
 import { SearchProvider } from '../../context/search/SearchProvider';
-import { CartProvider } from '../../context/cart/Cart.Provider';
+import { CartProvider } from '../../context/cart/CartProvider';
 
 interface Props {
   children: React.ReactNode;

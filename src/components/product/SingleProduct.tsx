@@ -7,7 +7,7 @@ import Title from '../elements/Title';
 import Details from './Details';
 import { handleFlex } from '../../utils/styled/flex';
 import { below } from '../../utils/styled/media';
-import { useCartDispatch } from '../../context/cart/Cart.Provider';
+import { useCartDispatch } from '../../context/cart/CartProvider';
 import { BtnPrimary } from '../styled/Buttons';
 interface Variant {
   sku: string;
