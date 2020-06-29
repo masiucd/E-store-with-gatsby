@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PageProps, graphql } from 'gatsby';
-import Layout, { Page } from '../components/layout';
+import Layout from '../components/layout';
 import SingleProduct from '../components/product/SingleProduct';
 import { IFluidObject } from 'gatsby-background-image';
 
@@ -25,6 +25,7 @@ interface Props {
   shopifyProduct: {
     title: string;
     description: string;
+    shopifyId: string;
     createdAt: string;
     priceRange: {
       maxVariantPrice: {
@@ -53,6 +54,7 @@ export const PRODUCTS_QUERY = graphql`
     shopifyProduct(handle: { eq: $handle }) {
       title
       description
+      shopifyId
       createdAt(formatString: "YYYY MM do")
       priceRange {
         maxVariantPrice {

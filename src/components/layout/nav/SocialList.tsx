@@ -43,6 +43,11 @@ const StyledSocialList = styled.ul`
   padding: 3rem;
   width: calc(100% - 10px);
   transition: ${({ theme }) => theme.transition.quickTransition};
+  background: ${({ theme }) => theme.colors.secondary};
+  /* clip-path: polygon(0% 0%, 86% 0, 100% 50%, 77% 100%, 0% 100%); */
+  /* clip-path: polygon(0% 0%, 94% 1%, 100% 50%, 89% 100%, 0% 100%); */
+  clip-path: polygon(0% 0%, 90% 0, 100% 50%, 85% 100%, 0% 100%);
+
   li {
   }
   a {

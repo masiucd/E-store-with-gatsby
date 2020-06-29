@@ -34,3 +34,35 @@ export const MyLink = styled(Link)`
     background-position: -100%;
   }
 `;
+
+//  REMEMBER to set as button , (PROP)
+export const BtnPrimary = styled(MyLink)`
+  color: ${({ theme: { colors } }) => colors.text};
+  border: 1px solid ${({ theme: { colors } }) => colors.common};
+  cursor: pointer;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(50%, ${props => props.theme.colors.primary}),
+    color-stop(50%, ${props => props.theme.colors.secondary})
+  );
+  background-image: linear-gradient(
+    to right,
+    ${props => props.theme.colors.primary} 50%,
+    ${props => props.theme.colors.secondary} 50%
+  );
+  ${({ theme }) => theme.shadow.elevations[2]};
+  display: block;
+  margin: 2rem auto;
+  &:active {
+    position: relative;
+    top: 8px;
+    ${({ theme }) => theme.shadow.elevations[3]};
+    border: 2px solid ${({ theme: { colors } }) => colors.secondary};
+  }
+  &:hover {
+    ${({ theme }) => theme.shadow.elevations[3]};
+    border: 1px solid ${({ theme: { colors } }) => colors.primary};
+  }
+`;

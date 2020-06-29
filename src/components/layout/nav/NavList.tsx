@@ -26,7 +26,7 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle, onToggle }) => {
   return (
     <StyledNavList
       style={{
-        transform: x.interpolate(x => `translate3d(${x * 1}%,0,0)`),
+        transform: x.interpolate(x => `translate3d(${x * -1}%,0,0)`),
         opacity,
       }}
     >
@@ -48,7 +48,7 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle, onToggle }) => {
 
 const StyledNavList = styled(animated.section)`
   position: fixed;
-  right: 0;
+  left: 0;
   top: 0;
   height: 100%;
   width: 30vmax;

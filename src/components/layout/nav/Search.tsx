@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import {
   useSearchState,
   useSearchDispatch,
-} from '../../../context/SearchProvider';
+} from '../../../context/search/SearchProvider';
 import { graphql, useStaticQuery } from 'gatsby';
 import { IFixedObject } from 'gatsby-background-image';
 import ProductShowCase from './ProductShowCase';

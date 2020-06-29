@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
-import { useSearchState } from '../../../context/SearchProvider';
+import { useSearchState } from '../../../context/search/SearchProvider';
 import ProductItemChild from './ProductItemChild';
 import { handleFlex } from '../../../utils/styled/flex';
 

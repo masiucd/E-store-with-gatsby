@@ -7,6 +7,8 @@ import Title from '../elements/Title';
 import Details from './Details';
 import { handleFlex } from '../../utils/styled/flex';
 import { below } from '../../utils/styled/media';
+import { useCartDispatch } from '../../context/cart/Cart.Provider';
+import { BtnPrimary } from '../styled/Buttons';
 interface Variant {
   sku: string;
   title: string;
@@ -28,7 +30,9 @@ interface Props {
   onShopifyProduct: {
     title: string;
     description: string;
+    shopifyId: string;
     createdAt: string;
+
     priceRange: {
       maxVariantPrice: {
         amount: string;
@@ -51,6 +55,10 @@ const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
     },
   } = onShopifyProduct;
 
+  const dispatch = useCartDispatch();
+
+  const ProductCopy = { ...onShopifyProduct, qty: 0 };
+
   return (
     <StyledProduct>
       <Hero
@@ -71,6 +79,15 @@ const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
 
         <Details data={onShopifyProduct} />
       </Body>
+      <BtnPrimary
+        as="button"
+        type="button"
+        onClick={() => {
+          dispatch({ type: 'ADD_CART_ITEM', payload: ProductCopy });
+        }}
+      >
+        Add to cart
+      </BtnPrimary>
     </StyledProduct>
   );
 };
