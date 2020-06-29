@@ -54,7 +54,7 @@ const FeatureProductItem: React.FC<Props> = ({ productData }) => {
         <span>
           From - {amount} {currencyCode}
         </span>
-        <MyLink to={`/products/${handle}`}>Products</MyLink>
+        <MyLink to={`/products/${handle}`}>product</MyLink>
       </BodyContent>
     </StyledItem>
   );
@@ -64,7 +64,7 @@ const StyledItem = styled.article`
   position: relative;
   cursor: pointer;
   transition: ${props => props.theme.transition.mainTransition};
-  ${props => props.theme.shadow.elevations[1]};
+  ${props => props.theme.shadow.elevations[3]};
   margin: 0.5rem;
 
   &:after {
@@ -94,6 +94,7 @@ const BodyContent = styled.div`
   transition: ${props => props.theme.transition.mainTransition};
   width: 100%;
   text-align: center;
+
   h4 {
     color: ${({ theme: { colors } }) => colors.text};
     font-size: 3rem;

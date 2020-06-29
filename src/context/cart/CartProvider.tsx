@@ -43,6 +43,7 @@ export interface CartItem {
 
 type Action =
   | { type: 'ADD_CART_ITEM'; payload: CartItem }
+  | { type: 'SET_CART_TO_LOCAL_STORAGE'; payload: CartItem[] }
   | { type: 'CLEAR_CART' }
   | { type: 'DELETE_ITEM_FROM_CART'; payload: string } // id - DELETE thw whole product from cart
   | { type: 'REMOVE_CART_ITEM'; payload: CartItem }
@@ -87,6 +88,12 @@ function cartReducer(state: State, action: Action) {
         ...state,
         isOpen: !state.isOpen,
       };
+    case 'SET_CART_TO_LOCAL_STORAGE': {
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    }
     default: {
       throw new Error(`Unable action type `);
     }
@@ -95,6 +102,24 @@ function cartReducer(state: State, action: Action) {
 
 const CartProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(cartReducer, initialState);
+
+  // const saveCartToLocalStorage = () => {
+  //   localStorage.setItem('cart', JSON.stringify(state.cart));
+  // };
+
+  React.useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+
+    if (storedCart) {
+      dispatch({
+        type: 'SET_CART_TO_LOCAL_STORAGE',
+        payload: JSON.parse(storedCart),
+      });
+    } else {
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    }
+  }, []);
+
   return (
     <CartStateContext.Provider value={state}>
       <CartDispatchContext.Provider value={dispatch}>

@@ -4,6 +4,8 @@ import { animated, useSpring, config } from 'react-spring';
 import styled from 'styled-components';
 import { handleFlex } from '../../utils/styled/flex';
 import CartDopDownItem from './CartDopDownItem';
+import { countCartTotalPricePerItem } from '../../context/cart/utils';
+import { MyLink } from '../styled/Buttons';
 interface Props {}
 
 const CartDropDown: React.FC<Props> = () => {
@@ -30,13 +32,17 @@ const CartDropDown: React.FC<Props> = () => {
       >
         ⤫
       </span>
+      <h1 id="cart-title">Your Cart</h1>{' '}
       <Body>
-        <h1 id="cart-title">Your Cart</h1>{' '}
         {cart.length > 0 &&
           cart.map(cartItem => (
             <CartDopDownItem key={cartItem.shopifyId} cartItem={cartItem} />
           ))}
       </Body>
+      <Total>
+        <h4>Total Price {countCartTotalPricePerItem(cart)} SEK</h4>
+        {cart.length > 0 && <MyLink to="/checkout">Checkout</MyLink>}
+      </Total>
     </StyledDropDown>
   ) : null;
 };
@@ -59,18 +65,35 @@ const StyledDropDown = styled(animated.div)`
     font-size: 5em;
     cursor: pointer;
   }
-`;
-const Body = styled.ul`
-  border: 2px solid red;
-  height: 80%;
-  width: 90%;
-  color: ${({ theme: { colors } }) => colors.text};
   #cart-title {
     text-align: center;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
     width: 80%;
     margin: 0 auto;
     font-size: 4rem;
+  }
+`;
+const Body = styled.ul`
+  margin-top: 2rem;
+  ${handleFlex('column', 'center', 'center')};
+  /* height: 80%; */
+  width: 90%;
+  align-self: center;
+  justify-self: center;
+  color: ${({ theme: { colors } }) => colors.text};
+  overflow-y: scroll;
+`;
+
+const Total = styled.div`
+  margin-top: auto;
+  width: 100%;
+  padding: 1rem;
+  ${handleFlex('row', 'space-between', 'center')}
+  h4 {
+    font-size: 2rem;
+  }
+  ${MyLink} {
+    padding: 0;
   }
 `;
 

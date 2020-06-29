@@ -44,5 +44,9 @@ export const countCartItems = (cartItems: CartItem[]) => {
   return cartItems.reduce((qty, item) => qty + item.qty, 0);
 };
 export const countCartTotalPricePerItem = (cartItems: CartItem[]) => {
-  return cartItems.reduce((qty, item) => qty + item.qty * item.qty, 0);
+  return cartItems.reduce(
+    (qty, item) =>
+      qty + item.qty * Number(item.priceRange.maxVariantPrice.amount),
+    0
+  );
 };

@@ -63,8 +63,8 @@ const FeatureProducts: React.FC = () => {
 const Wrapper = styled.div`
   ${handleFlex('column', 'center', 'center')};
   padding: 2rem 1rem;
-  border: 2px solid blue;
   width: 100%;
+  margin-top: 2rem;
   h3 {
     font-size: 3rem;
     text-transform: capitalize;
@@ -77,7 +77,7 @@ const StyledFeatureProducts = styled.section`
   width: 100%;
   ${handleFlex('row', 'space-evenly', 'center')};
   margin: 4rem auto;
-  border: 2px solid red;
+
   ${below.medium`
     ${handleFlex('column', 'center', 'center')};
   `}
