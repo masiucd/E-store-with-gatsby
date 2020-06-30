@@ -103,22 +103,22 @@ function cartReducer(state: State, action: Action) {
 const CartProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(cartReducer, initialState);
 
-  // const saveCartToLocalStorage = () => {
-  //   localStorage.setItem('cart', JSON.stringify(state.cart));
-  // };
+  const saveCartToLocalStorage = () => {
+    localStorage.setItem('cart', JSON.stringify(state.cart));
+  };
 
   React.useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-
+    const storedCart = window.localStorage.getItem('cart');
+    console.log(storedCart);
     if (storedCart) {
       dispatch({
         type: 'SET_CART_TO_LOCAL_STORAGE',
         payload: JSON.parse(storedCart),
       });
     } else {
-      localStorage.setItem('cart', JSON.stringify(state.cart));
+      window.localStorage.setItem('cart', JSON.stringify(state.cart));
     }
-  }, [state.cart]);
+  }, []);
 
   return (
     <CartStateContext.Provider value={state}>
