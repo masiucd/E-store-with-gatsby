@@ -3,6 +3,7 @@ import { IFluidObject } from 'gatsby-background-image';
 import styled from 'styled-components';
 import { handleFlex } from '../../utils/styled/flex';
 import { below } from '../../utils/styled/media';
+
 interface Variant {
   sku: string;
   title: string;

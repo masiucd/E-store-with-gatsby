@@ -9,6 +9,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             node {
               id
               handle
+              productType
             }
           }
         }
@@ -17,13 +18,21 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   );
 
   results.data.allShopifyProduct.edges.forEach(({ node }) => {
-    const { id, handle } = node;
+    const { id, handle, productType } = node;
     createPage({
       path: `/products/${handle}`,
       component: path.resolve('src/templates/single-product-template.tsx'),
       context: {
         id,
         handle,
+      },
+    });
+    createPage({
+      path: `products/category/${productType}`,
+      component: path.resolve('src/templates/category-template.tsx'),
+      context: {
+        id,
+        productType,
       },
     });
   });

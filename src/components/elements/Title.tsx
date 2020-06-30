@@ -11,6 +11,8 @@ interface Props {
   pathname?: string;
   ctaText?: string;
   textShadow?: boolean;
+  textCenter?: boolean;
+  textColor?: string;
 }
 
 const Title: React.FC<Props> = ({
@@ -21,6 +23,8 @@ const Title: React.FC<Props> = ({
   pathname,
   ctaText,
   textShadow,
+  textCenter,
+  textColor,
 }) => {
   return (
     <section className={className}>
@@ -42,7 +46,9 @@ const CtaWrapper = styled.div`
 
 export default styled(Title)`
   ${handleFlex('column', 'center', 'center')};
-  color: ${({ theme: { colors } }) => colors.text};
+  color: ${({ textColor, theme: { colors } }) =>
+    textColor ? textColor : colors.text};
+  text-align: ${props => (props.textCenter ? 'center' : null)};
   h1,
   h3 {
     text-shadow: 2px 2px 3px

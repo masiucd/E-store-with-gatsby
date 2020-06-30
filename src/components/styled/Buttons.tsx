@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 
-export const MyLink = styled(Link)`
+interface LinkProps {
+  dark?: string;
+}
+
+export const MyLink = styled(Link)<LinkProps>`
   color: ${({ theme: { colors } }) => colors.text};
   border: 2px solid ${({ theme: { colors } }) => colors.text};
   padding: 0.8rem 1rem;
@@ -14,13 +18,22 @@ export const MyLink = styled(Link)`
     linear,
     left top,
     right top,
-    color-stop(50%, transparent),
-    color-stop(50%, ${props => props.theme.colors.primary})
+    color-stop(
+      50%,
+      ${props => (props.dark ? props.theme.colors.primary : 'transparent')}
+    ),
+    color-stop(
+      50%,
+      ${props =>
+        props.dark ? props.theme.colors.secondary : props.theme.colors.primary}
+    )
   );
   background-image: linear-gradient(
     to right,
-    transparent 50%,
-    ${props => props.theme.colors.primary} 50%
+    ${props => (props.dark ? props.theme.colors.primary : 'transparent')} 50%,
+    ${props =>
+        props.dark ? props.theme.colors.secondary : props.theme.colors.primary}
+      50%
   );
 
   background-position: 0;
