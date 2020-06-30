@@ -118,7 +118,7 @@ const CartProvider: React.FC<Props> = ({ children }) => {
     } else {
       localStorage.setItem('cart', JSON.stringify(state.cart));
     }
-  }, []);
+  }, [state.cart]);
 
   return (
     <CartStateContext.Provider value={state}>

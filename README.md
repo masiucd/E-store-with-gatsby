@@ -2,31 +2,33 @@
 
 ### E shop using Gatsby and Shopify API
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d374a159-9ee3-4b02-91a3-ee3053990fcb/deploy-status)](https://marcells-fits.netlify.app/)
+
 This app is not using any finished layout ore template, it is built from scratch. Just using Shopify API end point to store the products.
 
-```bash
+``` bash
   git clone Project
 ```
 
-```bash
+``` bash
   cd into project
 ```
 
-```bash
+``` bash
   yarn/nm install
 ```
 
 ### Tools
 
-- Gatsby
-- Shopify
-- Typescript
-- React
-- Graph QL
+* Gatsby
+* Shopify
+* Typescript
+* React
+* Graph QL
 
 ##### pages/index.tsx
 
-```jsx
+``` jsx
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
 import { IFixedObject } from 'gatsby-background-image';
