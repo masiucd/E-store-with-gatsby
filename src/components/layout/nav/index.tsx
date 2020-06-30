@@ -7,7 +7,7 @@ import Img from 'gatsby-image';
 import { IFixedObject } from 'gatsby-background-image';
 import { handleFlex } from '../../../utils/styled/flex';
 import Search from './Search';
-import { below } from '../../../utils/styled/media';
+import { below, above } from '../../../utils/styled/media';
 import { countCartItems } from '../../../context/cart/utils';
 import {
   useCartState,
@@ -41,6 +41,12 @@ interface NavQuery {
   navIcons: {
     edges: Array<IconNode>;
   };
+  mainLogo: {
+    name: string;
+    childImageSharp: {
+      fixed: IFixedObject;
+    };
+  };
 }
 
 const Nav: React.FC<Props> = ({ className }) => {
@@ -49,6 +55,7 @@ const Nav: React.FC<Props> = ({ className }) => {
       siteMetadata: { title, paths },
     },
     navIcons,
+    mainLogo,
   } = useStaticQuery<NavQuery>(NAV_QUERY);
   const [on, toggle] = useToggle(false);
   const [a, b, c] = navIcons.edges;
@@ -59,13 +66,15 @@ const Nav: React.FC<Props> = ({ className }) => {
     <nav className={className}>
       <div className="title">
         <h3>
-          {' '}
           <Link to="/">{title}</Link>{' '}
         </h3>
       </div>
+
       <div id="navToggle" onClick={toggle}>
         <Img fixed={b.node.childImageSharp.fixed} />
+        <Img fixed={b.node.childImageSharp.fixed} />
       </div>
+
       <Search type="text" placeholder="Search product" />
       <NavList on={on} onPaths={paths} onTitle={title} onToggle={toggle} />
       <Icons>
@@ -77,6 +86,7 @@ const Nav: React.FC<Props> = ({ className }) => {
           <span id="cart-amount">{countCartItems(cart)}</span>
         </div>
       </Icons>
+
       <CartDropDown />
     </nav>
   );
@@ -98,10 +108,18 @@ const NAV_QUERY = graphql`
         node {
           name
           childImageSharp {
-            fixed(width: 35, height: 35) {
+            fixed(width: 30, height: 30) {
               ...GatsbyImageSharpFixed_tracedSVG
             }
           }
+        }
+      }
+    }
+    mainLogo: file(relativeDirectory: { eq: "main_logo" }) {
+      name
+      childImageSharp {
+        fixed(width: 35, height: 35) {
+          ...GatsbyImageSharpFixed_tracedSVG
         }
       }
     }
@@ -146,7 +164,7 @@ export default styled(Nav)`
   grid-template-rows: auto;
     /* ${handleFlex('row', 'space-between', 'center')} */
   ${below.medium`
-    grid-template-columns: 20px 2fr;
+    grid-template-columns: 20px 2fr 1fr;
   `}
 
   .title {
@@ -191,4 +209,7 @@ export default styled(Nav)`
     cursor: pointer;
     z-index: 100;
   }
+
+
+
 `;

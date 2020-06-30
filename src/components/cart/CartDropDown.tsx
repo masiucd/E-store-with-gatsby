@@ -91,13 +91,16 @@ const Body = styled.ul`
 const Total = styled.div`
   margin-top: auto;
   width: 100%;
-  padding: 1rem;
-  ${handleFlex('row', 'space-between', 'center')}
+  padding: 2rem 1rem;
+  ${handleFlex('row', 'space-around', 'center')}
+  border-top: 2px solid ${({ theme }) => theme.colors.text};
+
   h4 {
     font-size: 2rem;
   }
   ${MyLink} {
     padding: 0;
+    margin: 0;
   }
 `;
 

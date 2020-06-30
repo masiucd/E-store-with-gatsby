@@ -91,8 +91,8 @@ const ItemStyles = styled.li`
   ${handleFlex('row', 'space-between', 'center')};
   margin: 1rem 0;
   padding: 0.5rem;
-  border: 2px solid red;
-
+  border-bottom: 2px solid ${({ theme }) => theme.colors.common};
+  width: 80%;
   strong {
     font-size: 1.8rem;
     text-transform: capitalize;
