@@ -128,6 +128,11 @@ const Icons = styled.div`
       font-size: 2rem;
     }
   }
+  ${below.medium`
+      position: absolute;
+      top: 1rem;
+      right: 0;
+  `}
 `;
 
 export default styled(Nav)`
@@ -139,8 +144,9 @@ export default styled(Nav)`
   display: grid;
   grid-template-columns: 200px 1fr 200px;
   grid-template-rows: auto;
+    /* ${handleFlex('row', 'space-between', 'center')} */
   ${below.medium`
-    grid-template-columns: 20px 1fr 200px ;
+    grid-template-columns: 20px 2fr;
   `}
 
   .title {
@@ -158,8 +164,16 @@ export default styled(Nav)`
     }
     ${below.medium`
       h3{
-        display:none;
+        margin: 1rem 0;
+        position: absolute;
+        top: 2rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
+    `}
+
+    ${below.small`
+      display: none;
     `}
   }
   #cart {

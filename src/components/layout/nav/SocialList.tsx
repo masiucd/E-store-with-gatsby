@@ -54,7 +54,7 @@ const StyledSocialList = styled.ul`
   }
   ${below.small`
 
-    ${handleFlex('column', 'center', 'center')};
+    /* ${handleFlex('column', 'center', 'center')}; */
 
   `}
 `;

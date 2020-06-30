@@ -10,6 +10,7 @@ import {
 import { graphql, useStaticQuery } from 'gatsby';
 import { IFixedObject } from 'gatsby-background-image';
 import ProductShowCase from './ProductShowCase';
+import { below } from '../../../utils/styled/media';
 interface Props {
   type?: string;
   placeholder?: string;
@@ -91,6 +92,11 @@ const Search: React.FC<Props> = ({ type, placeholder }) => {
 const SearchContainer = styled.div`
   ${handleFlex('column', 'center', 'center')};
   position: relative;
+  ${below.medium`
+    margin-top: 3rem;
+    margin-right-auto;
+
+  `}
 `;
 
 const InputWrapper = styled.div`

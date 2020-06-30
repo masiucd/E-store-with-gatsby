@@ -6,6 +6,7 @@ import { handleFlex } from '../../utils/styled/flex';
 import CartDopDownItem from './CartDopDownItem';
 import { countCartTotalPricePerItem } from '../../context/cart/utils';
 import { MyLink } from '../styled/Buttons';
+import { below } from '../../utils/styled/media';
 interface Props {}
 
 const CartDropDown: React.FC<Props> = () => {
@@ -53,9 +54,9 @@ const StyledDropDown = styled(animated.div)`
   right: 0;
   z-index: 100;
   height: 100%;
-  background: ${({ theme: { colors } }) => colors.secondary};
+  background: ${({ theme: { colors } }) => colors.primary};
 
-  width: 35vmax;
+  width: 45vmax;
   ${handleFlex('column', 'center', 'center')};
 
   #close-dropdown {
@@ -67,11 +68,14 @@ const StyledDropDown = styled(animated.div)`
   }
   #cart-title {
     text-align: center;
-    border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.text};
     width: 80%;
     margin: 0 auto;
     font-size: 4rem;
   }
+  ${below.small`
+      width: 100%;
+  `}
 `;
 const Body = styled.ul`
   margin-top: 2rem;

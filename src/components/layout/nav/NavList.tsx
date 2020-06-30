@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import { Link } from 'gatsby';
 import { handleFlex } from '../../../utils/styled/flex';
 import SocialList from './SocialList';
+import { below } from '../../../utils/styled/media';
 
 interface Path {
   text: string;
@@ -51,7 +52,7 @@ const StyledNavList = styled(animated.section)`
   left: 0;
   top: 0;
   height: 100%;
-  width: 30vmax;
+  width: 45vw;
   background: ${({ theme: { colors } }) => colors.primary};
   color: ${({ theme: { colors } }) => colors.text};
   z-index: 100;
@@ -68,6 +69,12 @@ const StyledNavList = styled(animated.section)`
     cursor: pointer;
     color: ${({ theme: { colors } }) => colors.secondary};
   }
+  ${below.medium`
+    width: 80vw;
+  `}
+  ${below.small`
+    width: 100%;
+  `}
 `;
 
 const ListStyles = styled.ul`
