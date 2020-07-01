@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { below } from '../../utils/styled/media';
+import { below, above } from '../../utils/styled/media';
 import { handleFlex } from '../../utils/styled/flex';
 
 export const DetailsStyles = styled.div`
@@ -20,5 +20,19 @@ export const DetailsStyles = styled.div`
   }
   ${below.medium`
     margin-top: 12em;
+  `}
+`;
+
+export const GridProducts = styled.section`
+  margin: 2rem auto;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 15px;
+  grid-template-rows: auto;
+  height: 100%;
+
+  ${above.large`
+    grid-template-columns: repeat(3, 1fr);
   `}
 `;

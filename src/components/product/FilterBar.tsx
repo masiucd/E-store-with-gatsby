@@ -46,10 +46,10 @@ function FilterBar({ className, onEdges }: Props): ReactElement {
   const [productText, setProductText] = React.useState<string>('');
 
   const dispatch = useProductDispatch();
-  const { productType } = useProductState();
 
   const sendProductTitleToState = (text: string): void => {
     setProductText(text);
+
     if (productText.length > 0) {
       dispatch({ type: 'SET_CURRENT_PRODUCT_TYPE', payload: productText });
     } else {

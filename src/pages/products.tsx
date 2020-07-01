@@ -2,11 +2,11 @@ import * as React from 'react';
 import { PageProps, graphql } from 'gatsby';
 import Layout, { Page } from '../components/layout';
 import { IFluidObject } from 'gatsby-background-image';
-import ProductCategory from '../components/product/ProductCategory';
+
 import styled from 'styled-components';
 import Title from '../components/elements/Title';
-import { above } from '../utils/styled/media';
-import FilterBar from '../components/product/FilterBar';
+
+import ProductGrid from '../components/product/ProductsGrid';
 
 interface ImgData {
   localFile: {
@@ -52,16 +52,7 @@ const ProductPage: React.FC<PageProps<Query>> = ({ data }) => {
           textColor="#333"
           secondaryTitle="Find your style"
         />
-        <FilterBar className="filterBar" onEdges={edges} />
-        <ProductsGrid>
-          {edges.map(({ node }) => (
-            <ProductCategory
-              key={node.handle}
-              onData={node}
-              className={node.title}
-            />
-          ))}
-        </ProductsGrid>
+        <ProductGrid onEdges={edges} />
       </StyledAbout>
     </Layout>
   );
@@ -69,20 +60,6 @@ const ProductPage: React.FC<PageProps<Query>> = ({ data }) => {
 
 const StyledAbout = styled(Page)`
   width: 80vw;
-`;
-
-const ProductsGrid = styled.section`
-  margin: 2rem auto;
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 15px;
-  grid-template-rows: auto;
-  height: 100%;
-
-  ${above.large`
-    grid-template-columns: repeat(3, 1fr);
-  `}
 `;
 
 export const PRODUCT_PAGE_QUERY = graphql`
