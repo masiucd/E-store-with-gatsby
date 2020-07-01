@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { IFluidObject } from 'gatsby-background-image';
 import { handleFlex } from '../../utils/styled/flex';
+import ProductCheckBox from './ProductCheckbox';
 
 interface Node {
   node: {
@@ -42,10 +43,7 @@ function FilterBar({ className, onEdges }: Props): ReactElement {
     <div className={className}>
       <div className="inputs">
         {removeDuplicates().map(title => (
-          <label htmlFor={title} key={title}>
-            <span>{title}</span>
-            <input type="checkbox" name={title} id={title} />
-          </label>
+          <ProductCheckBox key={title} onTitle={title} />
         ))}
       </div>
     </div>
