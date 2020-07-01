@@ -35,9 +35,10 @@ const StyledShowCase = styled(animated.ul)`
   ${handleFlex('column', 'center', 'center')};
   position: absolute;
   height: 30em;
-  top: calc(30rem - 21rem);
-  left: 15%;
-  width: calc(100% - 30%);
+  top: calc(30rem - 25rem);
+  left: 1%;
+  width: calc(100% - 10%);
+  /* width: 100%; */
   overflow-y: scroll;
 
   /* left: 50%;

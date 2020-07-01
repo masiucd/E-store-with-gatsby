@@ -92,18 +92,18 @@ const Search: React.FC<Props> = ({ type, placeholder }) => {
 const SearchContainer = styled.div`
   ${handleFlex('column', 'center', 'center')};
   position: relative;
+  width: 50%;
   ${below.medium`
     margin-top: 3rem;
     margin-right-auto;
-
+    width: 70%;
   `}
 `;
 
 const InputWrapper = styled.div`
   align-self: center;
   justify-self: center;
-  width: 70%;
-
+  width: 100%;
   ${handleFlex('row', 'flex-start', 'center')};
   ${InputStyles} {
     margin: 0 auto;

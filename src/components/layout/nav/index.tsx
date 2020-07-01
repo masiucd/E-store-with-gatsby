@@ -14,7 +14,7 @@ import {
   useCartDispatch,
 } from '../../../context/cart/CartProvider';
 import CartDropDown from '../../cart/CartDropDown';
-
+import { Icons } from './NavStyles';
 interface Props {
   className: string;
 }
@@ -76,10 +76,12 @@ const Nav: React.FC<Props> = ({ className }) => {
 
       <Search type="text" placeholder="Search product" />
       <NavList on={on} onPaths={paths} onTitle={title} onToggle={toggle} />
+
       <Icons>
         <div className="col">
           <Img fixed={c.node.childImageSharp.fixed} />
         </div>
+
         <div className="col" onClick={() => dispatch({ type: 'IS_OPEN' })}>
           <Img fixed={a.node.childImageSharp.fixed} />
           <span id="cart-amount">{countCartItems(cart)}</span>
@@ -90,6 +92,48 @@ const Nav: React.FC<Props> = ({ className }) => {
     </nav>
   );
 };
+
+export default styled(Nav)`
+  padding: 2.5rem 2rem;
+  background: ${({ theme: { colors } }) => colors.primary};
+  color: ${({ theme: { colors } }) => colors.text};
+  position: relative;
+  height: 15rem;
+  ${handleFlex('row', 'space-around', 'center')};
+
+  .title {
+    width: 30%;
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-transform: capitalize;
+    padding: 1.5rem 0.5rem;
+    h3 {
+      position: relative;
+      border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
+      a {
+        color: ${({ theme: { colors } }) => colors.text};
+        font-size: 3rem;
+      }
+    }
+    ${below.medium`
+        display: none;
+    `}
+
+    ${below.small`
+      display: none;
+    `}
+  }
+
+  #navToggle {
+    position: fixed;
+    top: 0.5rem;
+    left: 2rem;
+    cursor: pointer;
+    z-index: 100;
+  }
+  ${below.small`
+    ${handleFlex('column', 'center', 'center')}
+  `}
+`;
 
 const NAV_QUERY = graphql`
   {
@@ -123,92 +167,4 @@ const NAV_QUERY = graphql`
       }
     }
   }
-`;
-
-const Icons = styled.div`
-  ${handleFlex('row', 'space-evenly', 'center')};
-  img {
-    cursor: pointer;
-  }
-  ${below.medium`
-
-    ${handleFlex('row', 'flex-end', 'center')};
-    & > *{
-      margin-right: 2rem;
-    }
-  `}
-  .col {
-    ${handleFlex('row', 'center', 'center')};
-
-    span {
-      margin-left: 1rem;
-      font-size: 2rem;
-    }
-  }
-  ${below.medium`
-      position: absolute;
-      top: 1rem;
-      right: 0;
-  `}
-`;
-
-export default styled(Nav)`
-  padding: 2.5rem 2rem;
-  background: ${({ theme: { colors } }) => colors.primary};
-  color: ${({ theme: { colors } }) => colors.text};
-  position: relative;
-  height: 18rem;
-  display: grid;
-  grid-template-columns: 200px 1fr 200px;
-  grid-template-rows: auto;
-    /* ${handleFlex('row', 'space-between', 'center')} */
-  ${below.medium`
-    grid-template-columns: 20px 2fr 1fr;
-  `}
-
-  .title {
-    width: 100%;
-    font-family: 'Montserrat Alternates', sans-serif;
-    text-transform: capitalize;
-    padding: 1.5rem 0.5rem;
-    h3 {
-      position: relative;
-      border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
-      a {
-        color: ${({ theme: { colors } }) => colors.text};
-        font-size: 3rem;
-      }
-    }
-    ${below.medium`
-      h3{
-        margin: 1rem 0;
-        position: absolute;
-        top: 2rem;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    `}
-
-    ${below.small`
-      display: none;
-    `}
-  }
-  #cart {
-    position: absolute;
-    top: 3.5rem;
-    right: 7rem;
-    cursor: pointer;
-    /* z-index: ; */
-  }
-  #navToggle {
-    position: fixed;
-    /* position: absolute; */
-    top: 0.5rem;
-    left: 2rem;
-    cursor: pointer;
-    z-index: 100;
-  }
-
-
-
 `;
