@@ -50,7 +50,8 @@ export default function ProductGrid({ onEdges }: IProductGridProps) {
     if (filterProductByCategory().length > 0) {
       dispatch({ type: 'SET_PRODUCTS', payload: filterProductByCategory() });
     }
-  }, []);
+  }, [productType]);
+  console.log(products);
 
   return (
     <>

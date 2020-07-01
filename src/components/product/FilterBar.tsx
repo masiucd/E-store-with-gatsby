@@ -38,6 +38,7 @@ interface Props {
 }
 
 function FilterBar({ className, onEdges }: Props): ReactElement {
+  const { products } = useProductState();
   // Get unique product types , array
   const removeDuplicates = (): string[] => {
     let types = onEdges.map(x => x.node.productType);
@@ -50,12 +51,18 @@ function FilterBar({ className, onEdges }: Props): ReactElement {
   const sendProductTitleToState = (text: string): void => {
     setProductText(text);
 
-    if (productText.length > 0) {
+    if (productText !== '') {
       dispatch({ type: 'SET_CURRENT_PRODUCT_TYPE', payload: productText });
     } else {
       dispatch({ type: 'CLEAR_CURRENT_PRODUCT_TYPE' });
     }
   };
+
+  React.useEffect(() => {
+    if (products === []) {
+      setProductText('');
+    }
+  }, [productText]);
 
   return (
     <div className={className}>
