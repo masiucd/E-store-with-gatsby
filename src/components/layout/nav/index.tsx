@@ -72,7 +72,6 @@ const Nav: React.FC<Props> = ({ className }) => {
 
       <div id="navToggle" onClick={toggle}>
         <Img fixed={b.node.childImageSharp.fixed} />
-        <Img fixed={b.node.childImageSharp.fixed} />
       </div>
 
       <Search type="text" placeholder="Search product" />

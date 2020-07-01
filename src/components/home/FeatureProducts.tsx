@@ -50,7 +50,9 @@ const FeatureProducts: React.FC = () => {
 
   return (
     <Wrapper>
-      <h3>Popular Products</h3>
+      <h3>
+        Popular <span>Products</span>
+      </h3>
       <StyledFeatureProducts>
         {edges.map(({ node }) => (
           <FeatureProductItem key={node.id} productData={node} />
@@ -62,14 +64,17 @@ const FeatureProducts: React.FC = () => {
 
 const Wrapper = styled.div`
   ${handleFlex('column', 'center', 'center')};
-  padding: 2rem 1rem;
   width: 100%;
-  margin-top: 2rem;
+  margin: 3rem auto 1rem auto;
+
   h3 {
     font-size: 3rem;
     text-transform: capitalize;
     color: ${({ theme }) => theme.colors.primary};
     border-bottom: ${({ theme }) => theme.colors.primary} 2px solid;
+    span {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 `;
 const StyledFeatureProducts = styled.section`

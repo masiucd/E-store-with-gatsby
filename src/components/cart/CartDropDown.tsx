@@ -56,7 +56,7 @@ const StyledDropDown = styled(animated.div)`
   height: 100%;
   background: ${({ theme: { colors } }) => colors.primary};
 
-  width: 45vmax;
+  width: 55vmax;
   ${handleFlex('column', 'center', 'center')};
 
   #close-dropdown {

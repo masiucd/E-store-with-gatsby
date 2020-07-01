@@ -7,7 +7,7 @@ import Title from '../elements/Title';
 import Details from './Details';
 import { handleFlex } from '../../utils/styled/flex';
 import { below } from '../../utils/styled/media';
-import { useCartDispatch } from '../../context/cart/CartProvider';
+import { useCartDispatch, useCartState } from '../../context/cart/CartProvider';
 import { BtnPrimary } from '../styled/Buttons';
 interface Variant {
   sku: string;
@@ -57,7 +57,15 @@ const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
 
   const dispatch = useCartDispatch();
 
-  const ProductCopy = { ...onShopifyProduct, qty: 0 };
+  const [countQty, setCountQty] = React.useState<number>(0);
+
+  const productCopy = { ...onShopifyProduct, qty: countQty };
+
+  React.useEffect(() => {
+    if (countQty > 0) {
+      window.localStorage.setItem('cartItem', JSON.stringify(productCopy));
+    }
+  }, [countQty]);
 
   return (
     <StyledProduct>
@@ -83,7 +91,8 @@ const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
         as="button"
         type="button"
         onClick={() => {
-          dispatch({ type: 'ADD_CART_ITEM', payload: ProductCopy });
+          dispatch({ type: 'ADD_CART_ITEM', payload: productCopy });
+          setCountQty(prev => prev + 1);
         }}
       >
         Add to cart
@@ -109,8 +118,13 @@ const ImageWrapper = styled.div`
   left: 1rem;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   ${below.medium`
-    left: 50%;
-    transform: translate(-50%,-50%);
+    /* left: 50%;
+    transform: translate(-50%,-50%); */
+    width: 20em;
+  `}
+
+  ${below.small`
+    width: 15em;
   `}
 `;
 

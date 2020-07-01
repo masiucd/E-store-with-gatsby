@@ -3,7 +3,8 @@ import { IFluidObject } from 'gatsby-background-image';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { handleFlex } from '../../utils/styled/flex';
-import { useCartDispatch } from '../../context/cart/CartProvider';
+import { useCartDispatch, useCartState } from '../../context/cart/CartProvider';
+import { below } from '../../utils/styled/media';
 
 export interface Variant {
   sku: string;
@@ -44,6 +45,24 @@ interface Props {
 
 const CartDopDownItem: React.FC<Props> = ({ cartItem }) => {
   const dispatch = useCartDispatch();
+  const { cart } = useCartState();
+
+  // const findCartItem = () => {
+  //   return cart.find(item => item.shopifyId === cartItem.shopifyId);
+  // };
+  // const [trackCount, setTrackCount] = React.useState(findCartItem()?.qty || 0);
+
+  const handleRemove = (id: string) => {
+    // if(findCartItem()?.shopifyId === id){
+
+    //   dispatch({ type: 'DELETE_ITEM_FROM_CART', payload: id });
+    //   window.localStorage.removeItem('cartItem');
+    // }else {
+    //   return
+    // }
+    dispatch({ type: 'DELETE_ITEM_FROM_CART', payload: id });
+  };
+
   return (
     <ItemStyles>
       <ImgWrapper>
@@ -82,6 +101,9 @@ const CartDopDownItem: React.FC<Props> = ({ cartItem }) => {
             →
           </span>
         </strong>
+        <span id="remove" onClick={() => handleRemove(cartItem.shopifyId)}>
+          ❌
+        </span>
       </div>
     </ItemStyles>
   );
@@ -103,6 +125,13 @@ const ItemStyles = styled.li`
   .content {
     ${handleFlex('column', 'center', 'center')};
     padding: 0 0.5rem;
+    position: relative;
+    #remove {
+      position: absolute;
+      top: 0;
+      right: -20px;
+      cursor: pointer;
+    }
   }
   .amount-display {
     span {
@@ -119,7 +148,10 @@ const ItemStyles = styled.li`
 `;
 
 const ImgWrapper = styled.div`
-  width: 10rem;
+  width: 20rem;
   padding: 0 0.5rem;
+  ${below.medium`
+
+  `}
 `;
 export default CartDopDownItem;

@@ -45,6 +45,7 @@ const CtaWrapper = styled.div`
 `;
 
 export default styled(Title)`
+  z-index: 5;
   ${handleFlex('column', 'center', 'center')};
   color: ${({ textColor, theme: { colors } }) =>
     textColor ? textColor : colors.text};

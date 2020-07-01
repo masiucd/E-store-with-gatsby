@@ -43,7 +43,7 @@ export interface CartItem {
 
 type Action =
   | { type: 'ADD_CART_ITEM'; payload: CartItem }
-  | { type: 'SET_CART_TO_LOCAL_STORAGE'; payload: CartItem[] }
+  | { type: 'SET_CART_TO_LOCAL_STORAGE'; payload: CartItem }
   | { type: 'CLEAR_CART' }
   | { type: 'DELETE_ITEM_FROM_CART'; payload: string } // id - DELETE thw whole product from cart
   | { type: 'REMOVE_CART_ITEM'; payload: CartItem }
@@ -91,7 +91,7 @@ function cartReducer(state: State, action: Action) {
     case 'SET_CART_TO_LOCAL_STORAGE': {
       return {
         ...state,
-        cart: action.payload,
+        cart: [...state.cart, action.payload],
       };
     }
     default: {
@@ -103,21 +103,19 @@ function cartReducer(state: State, action: Action) {
 const CartProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(cartReducer, initialState);
 
-  const saveCartToLocalStorage = () => {
-    localStorage.setItem('cart', JSON.stringify(state.cart));
-  };
-
   React.useEffect(() => {
-    const storedCart = window.localStorage.getItem('cart');
-    console.log(storedCart);
-    if (storedCart) {
+    let cartItem: CartItem | undefined = JSON.parse(
+      window.localStorage.getItem('cartItem')
+    );
+
+    if (cartItem) {
       dispatch({
         type: 'SET_CART_TO_LOCAL_STORAGE',
-        payload: JSON.parse(storedCart),
+        payload: cartItem,
       });
-    } else {
-      window.localStorage.setItem('cart', JSON.stringify(state.cart));
     }
+
+    console.log(cartItem);
   }, []);
 
   return (

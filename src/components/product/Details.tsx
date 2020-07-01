@@ -44,11 +44,14 @@ const Details: React.FC<Props> = ({ data }) => {
   const [selectedVaraint, setSelectedVaraint] = React.useState<Variant>(
     variants[0]
   );
+  let [first, last, ...rest] = title.split(' ');
 
   return (
     <DetailsStyles>
       <div className="details-name">
-        <h3>{title}</h3>
+        <h3>
+          {first} <span>{last}</span>{' '}
+        </h3>
       </div>
 
       <div className="price">
@@ -96,6 +99,10 @@ const DetailsStyles = styled.div`
       font-size: 3.5rem;
       text-transform: capitalize;
       border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.primary};
+      span {
+        color: ${({ theme }) => theme.colors.secondary};
+      }
     }
   }
   ${below.medium`
