@@ -2,7 +2,12 @@ import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { IFluidObject } from 'gatsby-background-image';
 import { handleFlex } from '../../utils/styled/flex';
-import ProductCheckBox from './ProductCheckbox';
+
+import ProductButton from './ProductButton';
+import {
+  useProductDispatch,
+  useProductState,
+} from '../../context/product/ProductProvider';
 
 interface Node {
   node: {
@@ -38,12 +43,35 @@ function FilterBar({ className, onEdges }: Props): ReactElement {
     let types = onEdges.map(x => x.node.productType);
     return types.filter((item, index) => types.indexOf(item) === index);
   };
+  const [productText, setProductText] = React.useState<string>('');
+
+  const dispatch = useProductDispatch();
+  const { productType } = useProductState();
+
+  const sendProductTitleToState = (text: string): void => {
+    setProductText(text);
+    if (productText.length > 0) {
+      dispatch({ type: 'SET_CURRENT_PRODUCT_TYPE', payload: productText });
+    } else {
+      dispatch({ type: 'CLEAR_CURRENT_PRODUCT_TYPE' });
+    }
+  };
 
   return (
     <div className={className}>
       <div className="inputs">
         {removeDuplicates().map(title => (
-          <ProductCheckBox key={title} onTitle={title} />
+          <div className="btn-wrap" key={title}>
+            <button
+              disabled={title === productText}
+              type="button"
+              onClick={() => {
+                sendProductTitleToState(title);
+              }}
+            >
+              {title}
+            </button>
+          </div>
         ))}
       </div>
     </div>

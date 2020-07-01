@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import { BtnPrimary, MyLink } from '../styled/Buttons';
 import { handleFlex } from '../../utils/styled/flex';
+import { useProductState } from '../../context/product/ProductProvider';
 interface ImgData {
   localFile: {
     childImageSharp: {
@@ -38,6 +39,8 @@ function ProductCategory({ onData, className }: Props): ReactElement {
       maxVariantPrice: { amount, currencyCode },
     },
   } = onData;
+
+  const { productCategories } = useProductState();
 
   return (
     <div className={className}>

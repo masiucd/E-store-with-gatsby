@@ -6,6 +6,7 @@ import { handleFlex } from '../../utils/styled/flex';
 import Nav from './nav';
 import { SearchProvider } from '../../context/search/SearchProvider';
 import { CartProvider } from '../../context/cart/CartProvider';
+import { ProductProvider } from '../../context/product/ProductProvider';
 
 interface Props {
   children: React.ReactNode;
@@ -28,13 +29,15 @@ const Layout: React.FC<Props> = ({ children }) => {
   }, []);
   return (
     <ThemeProvider theme={primaryTheme}>
-      <CartProvider>
-        <SearchProvider>
-          <GlobalStyles />
-          <Nav className="Navbar" />
-          <Main>{children}</Main>
-        </SearchProvider>
-      </CartProvider>
+      <ProductProvider>
+        <CartProvider>
+          <SearchProvider>
+            <GlobalStyles />
+            <Nav className="Navbar" />
+            <Main>{children}</Main>
+          </SearchProvider>
+        </CartProvider>
+      </ProductProvider>
     </ThemeProvider>
   );
 };

@@ -114,8 +114,6 @@ const CartProvider: React.FC<Props> = ({ children }) => {
         payload: cartItem,
       });
     }
-
-    console.log(cartItem);
   }, []);
 
   return (
