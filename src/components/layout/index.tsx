@@ -7,6 +7,7 @@ import Nav from './nav';
 import { SearchProvider } from '../../context/search/SearchProvider';
 import { CartProvider } from '../../context/cart/CartProvider';
 import { ProductProvider } from '../../context/product/ProductProvider';
+import Footer from './footer';
 
 interface Props {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ const Layout: React.FC<Props> = ({ children }) => {
             <GlobalStyles />
             <Nav className="Navbar" />
             <Main>{children}</Main>
+            <Footer className="Footer" />
           </SearchProvider>
         </CartProvider>
       </ProductProvider>
