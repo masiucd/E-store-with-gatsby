@@ -42,6 +42,8 @@ const Title: React.FC<Props> = ({
 const CtaWrapper = styled.div`
   width: 20vmax;
   padding: 2rem 1rem;
+  margin: 0 auto;
+  ${handleFlex('row', 'center', 'center')};
 `;
 
 export default styled(Title)`

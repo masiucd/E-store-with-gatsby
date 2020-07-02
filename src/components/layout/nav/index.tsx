@@ -94,16 +94,15 @@ const Nav: React.FC<Props> = ({ className }) => {
 };
 
 export default styled(Nav)`
-  padding: 2.5rem 2rem;
+  padding: 1rem;
   background: ${({ theme: { colors } }) => colors.primary};
   color: ${({ theme: { colors } }) => colors.text};
   position: fixed;
   width: 100%;
   top: 0;
-  height: 16rem;
+  height: 12rem;
   ${handleFlex('row', 'space-around', 'center')};
   z-index: 100;
-
   .title {
     width: 30%;
     font-family: 'Montserrat Alternates', sans-serif;
@@ -134,7 +133,8 @@ export default styled(Nav)`
     z-index: 100;
   }
   ${below.small`
-    ${handleFlex('column', 'center', 'center')}
+
+    ${handleFlex('column-reverse', 'center', 'center')}
   `}
 `;
 
