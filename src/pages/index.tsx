@@ -1,7 +1,5 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
-import { IFixedObject } from 'gatsby-background-image';
-
 import Layout, { Page } from '../components/layout';
 import Seo from '../components/SEO/Seo';
 import FeatureProducts from '../components/home/FeatureProducts';
@@ -29,9 +27,9 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
       <Hero className="Main hero" isLarge>
         <Title className="Home__Title" mainTitle={title} needCta />
       </Hero>
-      <Page>
-        <FeatureProducts />
-      </Page>
+      {/* <Page>
+      </Page> */}
+      <FeatureProducts />
     </Layout>
   );
 };

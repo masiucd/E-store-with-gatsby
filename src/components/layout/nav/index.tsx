@@ -97,9 +97,12 @@ export default styled(Nav)`
   padding: 2.5rem 2rem;
   background: ${({ theme: { colors } }) => colors.primary};
   color: ${({ theme: { colors } }) => colors.text};
-  position: relative;
-  height: 15rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 16rem;
   ${handleFlex('row', 'space-around', 'center')};
+  z-index: 100;
 
   .title {
     width: 30%;

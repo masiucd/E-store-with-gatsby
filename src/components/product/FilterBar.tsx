@@ -8,6 +8,7 @@ import {
   useProductDispatch,
   useProductState,
 } from '../../context/product/ProductProvider';
+import { above, below } from '../../utils/styled/media';
 
 interface Node {
   node: {
@@ -68,45 +69,66 @@ function FilterBar({ className, onEdges }: Props): ReactElement {
     <div className={className}>
       <div className="inputs">
         {removeDuplicates().map(title => (
-          <div className="btn-wrap" key={title}>
-            <button
-              disabled={title === productText}
-              type="button"
-              onClick={() => {
-                sendProductTitleToState(title);
-              }}
-            >
-              {title}
-            </button>
-          </div>
+          <button
+            key={title}
+            disabled={title === productText}
+            type="button"
+            onClick={() => {
+              sendProductTitleToState(title);
+            }}
+          >
+            {title}
+          </button>
         ))}
+        <button
+          type="button"
+          onClick={() => dispatch({ type: 'CLEAR_CURRENT_PRODUCT_TYPE' })}
+        >
+          All
+        </button>
       </div>
     </div>
   );
 }
 
 export default styled(FilterBar)`
-  border: 2px solid ${({ theme }) => theme.colors.primary};
-  ${({ theme: { shadow } }) => shadow.elevations[2]};
   width: 80%;
   margin: 2rem auto;
   padding: 2rem 0.5rem;
   display: block;
   position: relative;
-
-  .inputs {
-    ${handleFlex('row', 'center', 'center')};
+  transition: ${props => props.theme.transition.mainTransition};
+  &:hover {
+    ${({ theme: { shadow } }) => shadow.elevations[1]};
   }
-  label {
-    ${handleFlex('row', 'center', 'center')};
+  .inputs {
+    ${handleFlex('column', 'center', 'center')};
 
-    align-self: center;
-    width: 12em;
-    padding: 1rem 0.5rem;
-    span {
-      margin: 0 1rem;
-      font-size: 1.6rem;
-      text-transform: capitalize;
+    ${above.medium`
+      ${handleFlex('row', 'center', 'center')};
+    `}
+  }
+  button {
+    padding: 0.5rem 0.9rem;
+    margin: 0 1rem;
+    ${props => props.theme.shadow.elevations[2]};
+    cursor: pointer;
+    transition: ${props => props.theme.transition.mainTransition};
+    border: 0;
+    font-weight: 800;
+    font-size: 2rem;
+    width: 12rem;
+    background: transparent;
+    &:active {
+      position: relative;
+      top: 7px;
     }
+    &:hover {
+      background: ${props => props.theme.colors.secondary};
+      color: ${props => props.theme.colors.text};
+    }
+    ${below.medium`
+      margin: 1rem;
+    `}
   }
 `;

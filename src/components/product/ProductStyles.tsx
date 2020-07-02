@@ -21,6 +21,60 @@ export const DetailsStyles = styled.div`
   ${below.medium`
     margin-top: 12em;
   `}
+  .price {
+    padding: 1rem 0.5rem;
+    font-size: 3rem;
+  }
+  .desc {
+    padding: 2rem 0.5rem;
+    font-size: 2rem;
+    strong {
+      width: 100%;
+      display: block;
+      text-align: center;
+      span {
+        font-size: 2.8rem;
+        font-weight: 800;
+        text-align: center;
+      }
+    }
+    p {
+      font-size: 1.8rem;
+    }
+  }
+
+  .select {
+    width: 19rem;
+    position: relative;
+    border: 0;
+    outline: red;
+    select {
+      width: 100%;
+      background: #fff;
+      border: 0;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1.5rem;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      font-size: 1.5rem;
+      outline: none;
+      margin: 0 auto;
+      display: block;
+      border: 2px solid ${({ theme }) => theme.colors.primary};
+    }
+    &:after {
+      content: '👇🏻';
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      color: #333;
+      right: 1.8rem;
+      font-size: 2rem;
+      width: 10px;
+      height: 15px;
+    }
+  }
 `;
 
 export const GridProducts = styled.section`

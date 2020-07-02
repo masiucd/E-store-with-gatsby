@@ -45,7 +45,7 @@ const StyledSocialList = styled.ul`
   transition: ${({ theme }) => theme.transition.quickTransition};
   background: ${({ theme }) => theme.colors.secondary};
 
-  clip-path: polygon(0% 0%, 90% 0, 100% 50%, 85% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 95% 0, 100% 50%, 95% 100%, 0% 100%);
 
   li {
   }
@@ -54,7 +54,7 @@ const StyledSocialList = styled.ul`
   }
   ${below.small`
 
-    /* ${handleFlex('column', 'center', 'center')}; */
+
 
   `}
 `;

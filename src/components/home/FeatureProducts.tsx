@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { IFixedObject } from 'gatsby-background-image';
-import styled from 'styled-components';
-
-import { handleFlex } from '../../utils/styled/flex';
+import { Wrapper, StyledFeatureProducts } from './FeautureStyles';
 import { graphql, useStaticQuery } from 'gatsby';
 import FeatureProductItem from './FeatureProductItem';
-import { below } from '../../utils/styled/media';
 
 interface ImgData {
   id: string;
@@ -61,32 +58,6 @@ const FeatureProducts: React.FC = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  ${handleFlex('column', 'center', 'center')};
-  width: 100%;
-  margin: 3rem auto 1rem auto;
-
-  h3 {
-    font-size: 3rem;
-    text-transform: capitalize;
-    color: ${({ theme }) => theme.colors.primary};
-    border-bottom: ${({ theme }) => theme.colors.primary} 2px solid;
-    span {
-      color: ${({ theme }) => theme.colors.secondary};
-    }
-  }
-`;
-const StyledFeatureProducts = styled.section`
-  padding: 2rem;
-  width: 100%;
-  ${handleFlex('row', 'space-evenly', 'center')};
-  margin: 4rem auto;
-
-  ${below.medium`
-    ${handleFlex('column', 'center', 'center')};
-  `}
-`;
 
 const FEATURE_QUERY = graphql`
   {

@@ -1,8 +1,5 @@
 import * as React from 'react';
 import { IFluidObject } from 'gatsby-background-image';
-import styled from 'styled-components';
-import { handleFlex } from '../../utils/styled/flex';
-import { below } from '../../utils/styled/media';
 import { DetailsStyles } from './ProductStyles';
 
 interface Variant {
@@ -64,28 +61,30 @@ const Details: React.FC<Props> = ({ data }) => {
 
       <div className="desc">
         <strong>
-          <span>{productType}</span>
+          <span>Category {productType}</span>
         </strong>
         <p>{description}</p>
       </div>
 
-      <select
-        className="sku-options"
-        value={selectedVaraint.sku}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          const selected = variants.filter(
-            variant => variant.sku === e.target.value
-          );
-          const [a] = selected;
-          setSelectedVaraint(a);
-        }}
-      >
-        {variants.map(variant => (
-          <option key={variant.sku} value={variant.sku}>
-            {variant.title}
-          </option>
-        ))}
-      </select>
+      <div className="select">
+        <select
+          className="sku-options"
+          value={selectedVaraint.sku}
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+            const selected = variants.filter(
+              variant => variant.sku === e.target.value
+            );
+            const [a] = selected;
+            setSelectedVaraint(a);
+          }}
+        >
+          {variants.map(variant => (
+            <option key={variant.sku} value={variant.sku}>
+              {variant.title}
+            </option>
+          ))}
+        </select>
+      </div>
     </DetailsStyles>
   );
 };

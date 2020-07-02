@@ -24,6 +24,6 @@ export const Icons = styled.div`
   `}
 
   ${below.small`
-    margin: 2rem 0;
+    margin: 3rem 0 0 1rem;
   `}
 `;

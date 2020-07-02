@@ -52,8 +52,8 @@ export default styled(Hero)`
     props.isLarge
       ? `linear-gradient(rgba(36, 64, 111, 0.3), rgba(9, 1, 00, 0.7))`
       : 'none'};
-  width: 100%;
-  min-height: ${props => (props.isLarge ? 'calc(90vh - 80px)' : '65vh')};
+  width: 100vw;
+  min-height: ${props => (props.isLarge ? 'calc(90vh - 20px)' : '65vh')};
   background-repeat: repeat-y;
   background-position: ${props => (props.isLarge ? 'bottom' : 'center')};
   background-size: cover;

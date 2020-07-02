@@ -114,7 +114,7 @@ const Body = styled.div`
 const ImageWrapper = styled.div`
   width: 25rem;
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   left: 1rem;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   ${below.medium`

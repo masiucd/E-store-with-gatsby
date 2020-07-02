@@ -47,18 +47,17 @@ export default function ProductGrid({ onEdges }: IProductGridProps) {
   };
 
   React.useEffect(() => {
-    if (filterProductByCategory().length > 0) {
+    if (filterProductByCategory) {
       dispatch({ type: 'SET_PRODUCTS', payload: filterProductByCategory() });
     }
   }, [productType]);
-  console.log(products);
 
   return (
     <>
       <FilterBar className="filterBar" onEdges={onEdges} />
       <GridProducts>
-        {filterProductByCategory().length > 0
-          ? filterProductByCategory().map(({ node }) => (
+        {products.length > 0
+          ? products.map(({ node }) => (
               <ProductCategory
                 key={node.handle}
                 onData={node}

@@ -31,7 +31,9 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle, onToggle }) => {
         opacity,
       }}
     >
-      <h3 id="list-title">{onTitle}</h3>
+      <Link to="/" id="list-title">
+        <span>{onTitle}</span>
+      </Link>
       <ListStyles>
         {onPaths.map(path => (
           <li key={path.text}>
@@ -60,6 +62,7 @@ const StyledNavList = styled(animated.section)`
   #list-title {
     font-size: 4em;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
+    color: ${({ theme: { colors } }) => colors.text};
   }
   #close-logo {
     position: absolute;

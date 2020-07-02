@@ -4,11 +4,11 @@ export const handleHref = (imgName: string) => {
   switch (imgName) {
     case 'github_light':
       return 'https://github.com/masiuciszek';
-    case 'lambda':
+    case 'brochure':
       return 'https://masiuciszek.com/';
     case 'twitter_light':
       return 'https://twitter.com/CiszekMarcell';
-    case 'avanger':
+    case 'js':
       return 'https://twitter.com/CiszekMarcell';
     default:
       return 'https://github.com/masiuciszek';
