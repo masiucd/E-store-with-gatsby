@@ -40,12 +40,12 @@ const SocialList: React.FC = () => {
 
 const StyledSocialList = styled.ul`
   ${handleFlex('row', 'space-between', 'center')};
-  padding: 3rem;
+  padding: 1rem 1.5rem;
   width: calc(100% - 10px);
   transition: ${({ theme }) => theme.transition.quickTransition};
   background: ${({ theme }) => theme.colors.secondary};
   margin-top: auto;
-  clip-path: polygon(0% 0%, 95% 0, 100% 50%, 95% 100%, 0% 100%);
+  /* clip-path: polygon(0% 0%, 97% 0, 100% 50%, 97% 100%, 0% 100%); */
 
   li {
   }

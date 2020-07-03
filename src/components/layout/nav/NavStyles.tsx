@@ -78,7 +78,8 @@ export const ListStyles = styled.ul`
   align-self: center;
   ${handleFlex('column', 'center', 'center')};
   width: 80%;
-  height: 20%;
+  height: 30%;
+  margin: 2rem 0;
   li {
     padding: 1rem;
   }

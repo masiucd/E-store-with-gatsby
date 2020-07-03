@@ -66,7 +66,7 @@ const StyledNavList = styled(animated.section)`
     font-size: 4em;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
     color: ${({ theme: { colors } }) => colors.text};
-    margin-bottom: 16rem;
+    margin-bottom: 10rem;
   }
   #close-logo {
     position: absolute;
@@ -81,6 +81,10 @@ const StyledNavList = styled(animated.section)`
   `}
   ${below.small`
     width: 100%;
+    #close-logo {
+      left: 10px;
+      top: -20px;
+    }
   `}
 `;
 
