@@ -5,6 +5,8 @@ import { Link } from 'gatsby';
 import { handleFlex } from '../../../utils/styled/flex';
 import SocialList from './SocialList';
 import { below } from '../../../utils/styled/media';
+import { ListStyles } from './NavStyles';
+import CateGoryList from './CategoryList';
 
 interface Path {
   text: string;
@@ -41,6 +43,7 @@ const NavList: React.FC<Props> = ({ on, onPaths, onTitle, onToggle }) => {
           </li>
         ))}
       </ListStyles>
+      <CateGoryList />
       <SocialList />
       <div id="close-logo" onClick={onToggle}>
         ⤫
@@ -63,6 +66,7 @@ const StyledNavList = styled(animated.section)`
     font-size: 4em;
     border-bottom: 2px solid ${({ theme: { colors } }) => colors.secondary};
     color: ${({ theme: { colors } }) => colors.text};
+    margin-bottom: 16rem;
   }
   #close-logo {
     position: absolute;
@@ -78,41 +82,6 @@ const StyledNavList = styled(animated.section)`
   ${below.small`
     width: 100%;
   `}
-`;
-
-const ListStyles = styled.ul`
-  align-self: center;
-  ${handleFlex('column', 'center', 'center')};
-  width: 80%;
-  height: 60%;
-  li {
-    padding: 1rem;
-  }
-
-  a {
-    background: ${({ theme: { colors } }) => colors.primary};
-    color: ${({ theme: { colors } }) => colors.text};
-    font-size: 3em;
-    text-transform: capitalize;
-    position: relative;
-    &:after {
-      content: '';
-      transition: ${({ theme }) => theme.transition.mainTransition};
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      background: ${({ theme: { colors } }) => colors.text};
-    }
-    &:hover {
-      &:after {
-        background: ${({ theme: { colors } }) => colors.secondary};
-        width: 100%;
-        padding: 0.1rem;
-        height: 3px;
-      }
-    }
-  }
 `;
 
 export default NavList;

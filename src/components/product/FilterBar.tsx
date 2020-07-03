@@ -41,8 +41,8 @@ interface Props {
 function FilterBar({ className, onEdges }: Props): ReactElement {
   const { products } = useProductState();
   // Get unique product types , array
-  const removeDuplicates = (): string[] => {
-    let types = onEdges.map(x => x.node.productType);
+  const removeDuplicates = (edges: Array<Node>): string[] => {
+    let types = edges.map(x => x.node.productType);
     return types.filter((item, index) => types.indexOf(item) === index);
   };
   const [productText, setProductText] = React.useState<string>('');
@@ -68,7 +68,7 @@ function FilterBar({ className, onEdges }: Props): ReactElement {
   return (
     <div className={className}>
       <div className="inputs">
-        {removeDuplicates().map(title => (
+        {removeDuplicates(onEdges).map(title => (
           <button
             key={title}
             disabled={title === productText}

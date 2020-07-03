@@ -44,7 +44,7 @@ const StyledSocialList = styled.ul`
   width: calc(100% - 10px);
   transition: ${({ theme }) => theme.transition.quickTransition};
   background: ${({ theme }) => theme.colors.secondary};
-
+  margin-top: auto;
   clip-path: polygon(0% 0%, 95% 0, 100% 50%, 95% 100%, 0% 100%);
 
   li {
