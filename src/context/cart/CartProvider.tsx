@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IFluidObject } from 'gatsby-background-image';
 import { addItemToCart, removeCartItem } from './utils';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 interface Props {
   children: React.ReactNode;
@@ -40,10 +41,11 @@ export interface CartItem {
   tags: string[];
   variants: Variant[];
 }
+type Status = 'ADDING' | 'DELETING' | 'REMOVING' | '' | 'PENDING';
 
 type Action =
   | { type: 'ADD_CART_ITEM'; payload: CartItem }
-  | { type: 'SET_CART_TO_LOCAL_STORAGE'; payload: CartItem }
+  | { type: 'SAVED_LOCAL_STORAGE_CART'; payload: CartItem[] }
   | { type: 'CLEAR_CART' }
   | { type: 'DELETE_ITEM_FROM_CART'; payload: string } // id - DELETE thw whole product from cart
   | { type: 'REMOVE_CART_ITEM'; payload: CartItem }
@@ -60,14 +62,17 @@ const CartDispatchContext = React.createContext<Dispatch | undefined>(
 
 const initialState: State = {
   cart: [],
+
   isOpen: false,
 };
 
 function cartReducer(state: State, action: Action) {
   switch (action.type) {
     case 'ADD_CART_ITEM':
+      window.localStorage.setItem('cart', JSON.stringify(state.cart));
       return {
         ...state,
+        status: '',
         cart: addItemToCart(state.cart, action.payload),
       };
     case 'REMOVE_CART_ITEM':
@@ -88,10 +93,10 @@ function cartReducer(state: State, action: Action) {
         ...state,
         isOpen: !state.isOpen,
       };
-    case 'SET_CART_TO_LOCAL_STORAGE': {
+    case 'SAVED_LOCAL_STORAGE_CART': {
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: action.payload,
       };
     }
     default: {
@@ -102,17 +107,20 @@ function cartReducer(state: State, action: Action) {
 
 const CartProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = React.useReducer(cartReducer, initialState);
+  const [storedCart, setStoredCart] = useLocalStorage('cart', state.cart);
+
+  let getState = () => state.cart;
+  let memoizedCart = React.useMemo(() => getState(), [state.cart]);
 
   React.useEffect(() => {
-    let cartItem: CartItem | undefined = JSON.parse(
-      window.localStorage.getItem('cartItem')
-    );
-
-    if (cartItem) {
+    let localStoregaCart = JSON.parse(localStorage.getItem('cart') || '');
+    if (localStoregaCart) {
       dispatch({
-        type: 'SET_CART_TO_LOCAL_STORAGE',
-        payload: cartItem,
+        type: 'SAVED_LOCAL_STORAGE_CART',
+        payload: localStoregaCart,
       });
+    } else {
+      localStorage.clear();
     }
   }, []);
 

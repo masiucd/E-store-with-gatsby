@@ -6,8 +6,7 @@ interface Props {}
 const CheckoutPage: React.FC<PageProps> = () => {
   return (
     <Layout>
-      {' '}
-      <h1> Legia CWSKS </h1>{' '}
+      <h1> Checkout </h1>
     </Layout>
   );
 };

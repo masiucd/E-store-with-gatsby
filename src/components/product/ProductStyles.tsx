@@ -90,3 +90,31 @@ export const GridProducts = styled.section`
     grid-template-columns: repeat(3, 1fr);
   `}
 `;
+
+export const StyledProduct = styled.section`
+  width: 100%;
+  ${handleFlex('column', 'center', 'center')};
+  height: 100%;
+  margin: 6rem 0;
+`;
+
+export const Body = styled.div`
+  height: 100%;
+`;
+
+export const ImageWrapper = styled.div`
+  width: 25rem;
+  position: absolute;
+  /* bottom: 0; */
+  left: 1rem;
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  ${below.medium`
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 20em;
+  `}
+
+  ${below.small`
+    width: 15em;
+  `}
+`;
