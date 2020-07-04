@@ -33,6 +33,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       context: {
         id,
         productType,
+        handle,
       },
     });
   });

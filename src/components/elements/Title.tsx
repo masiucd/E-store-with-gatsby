@@ -28,7 +28,7 @@ const Title: React.FC<Props> = ({
 }) => {
   return (
     <section className={className}>
-      <h1>{mainTitle}</h1>
+      <h1>{mainTitle.endsWith('t') ? mainTitle + "'s" : mainTitle}</h1>
       <h3>{secondaryTitle}</h3>
       {needCta && (
         <CtaWrapper>
@@ -54,6 +54,7 @@ export default styled(Title)`
   text-align: ${props => (props.textCenter ? 'center' : null)};
   h1,
   h3 {
+    text-transform: capitalize;
     text-shadow: 2px 2px 3px
       ${({ theme, textShadow }) =>
         textShadow ? theme.colors.secondary : 'none'};
