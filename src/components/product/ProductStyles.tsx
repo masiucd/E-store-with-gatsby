@@ -47,7 +47,7 @@ export const DetailsStyles = styled.div`
     width: 19rem;
     position: relative;
     border: 0;
-    outline: red;
+    outline: 0;
     select {
       width: 100%;
       background: #fff;

@@ -15,7 +15,7 @@ const Checkout: React.FC<Props> = () => {
     <CheckOutStyles>
       <Title
         className="Checkout-title"
-        mainTitle="Checkout"
+        mainTitle="your Order"
         secondaryTitle={`You have ${countCartItems(cart)} items in your cart`}
         textColor="#333"
       />

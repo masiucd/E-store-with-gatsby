@@ -1,17 +1,24 @@
 import * as React from 'react';
 import { PageProps } from 'gatsby';
-import Layout, { Page } from '../components/layout';
-
+import Layout from '../components/layout';
+import styled from 'styled-components';
 import Checkout from '../components/checkout/Checkout';
+
 interface Props {}
 
 const CheckoutPage: React.FC<PageProps> = () => {
   return (
     <Layout>
-      <Page>
+      <Wrapper>
         <Checkout />
-      </Page>
+      </Wrapper>
     </Layout>
   );
 };
+
+const Wrapper = styled.section`
+  width: 80vw;
+  margin: 10rem auto;
+`;
+
 export default CheckoutPage;

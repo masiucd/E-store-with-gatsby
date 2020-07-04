@@ -7,7 +7,7 @@ export interface ICheckoutForm {
   onLabelForDate?: string;
   onLabelForName?: string;
   onLabelForCvv?: string;
-  onLabelSaveCard?: boolean;
+  onLabelSaveCard?: string;
 }
 
 export default function CheckoutForm(props: ICheckoutForm) {
@@ -23,15 +23,13 @@ export default function CheckoutForm(props: ICheckoutForm) {
     labelForCardNumber: onLabelForCardNumber || 'card Number',
     labelForDate: onLabelForDate || 'Last Date',
     labelForName: onLabelForName || 'Full name',
-    labelForCvv: onLabelForCvv || 'Last Date',
-    labelForSaveCard: onLabelSaveCard || false,
+    labelForCvv: onLabelForCvv || 'CSV',
+    labelForSaveCard: onLabelSaveCard || 'save card?',
   };
 
-  // const monthes2 = [...Array(12).keys()];
-  // [...Array(10).keys()]
-  const monthes = Array.from(Array(13).keys());
-
-  console.log(monthes);
+  const makeArrWithNums = (amount: number) => {
+    return Array.from(Array(amount).keys()).filter(x => x >= 1);
+  };
 
   return (
     <Form>
@@ -43,15 +41,20 @@ export default function CheckoutForm(props: ICheckoutForm) {
         <span>{options.labelForDate}</span>
         <div className="select">
           <Select>
-            <option value="">!</option>
-            {monthes.map(x => (
+            <option disabled>Month</option>
+            {makeArrWithNums(13).map(x => (
               <option value={x} key={x}>
-                {x}
+                {x.toString().length === 1 ? '0' + x : x}
               </option>
             ))}
           </Select>
           <Select>
-            <option value="">!</option>
+            <option disabled>Day</option>
+            {makeArrWithNums(32).map(x => (
+              <option value={x} key={x}>
+                {x.toString().length === 1 ? '0' + x : x}
+              </option>
+            ))}
           </Select>
         </div>
       </Label>
@@ -65,7 +68,7 @@ export default function CheckoutForm(props: ICheckoutForm) {
       </Label>
       <Label>
         <span>{options.labelForSaveCard}</span>
-        <Input type="checkbox" />
+        <Input type="checkbox" isCheckbox />
       </Label>
       <BtnPrimary as="button" type="submit">
         Pay

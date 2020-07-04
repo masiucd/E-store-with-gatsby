@@ -31,7 +31,7 @@ const primaryTheme: DefaultTheme = {
     h5: '22px',
     p: '18px',
     a: '16px',
-    maxWidth: '1100px',
+    maxWidth: '1200px',
   },
   transition: {
     mainTransition: 'all .3s linear',
@@ -70,7 +70,7 @@ const secondaryTheme: DefaultTheme = {
     h5: '22px',
     p: '18px',
     a: '16px',
-    maxWidth: '1100px',
+    maxWidth: '1200px',
   },
   transition: {
     mainTransition: 'all .3s linear',
