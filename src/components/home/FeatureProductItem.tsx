@@ -3,6 +3,8 @@ import { IFixedObject } from 'gatsby-background-image';
 import Img from 'gatsby-image';
 import { StyledItem, BodyContent } from './FeautureStyles';
 import { MyLink } from '../styled/Buttons';
+import { useSpring } from 'react-spring';
+import useToggle from '../../hooks/useToggle';
 
 interface ImgData {
   id: string;
@@ -45,10 +47,15 @@ const FeatureProductItem: React.FC<Props> = ({ productData }) => {
     },
   } = productData;
 
+  const [on, toggleOn] = useToggle(false);
+  const animatedProps = useSpring({
+    opacity: on ? 1 : 0,
+  });
+
   return (
-    <StyledItem>
+    <StyledItem onMouseEnter={toggleOn} onMouseLeave={toggleOn}>
       <Img fixed={images[0].localFile.childImageSharp.fixed} alt={title} />
-      <BodyContent>
+      <BodyContent style={animatedProps}>
         <h4>{title}</h4>
         <span>
           From - {amount} {currencyCode}

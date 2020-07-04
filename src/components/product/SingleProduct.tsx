@@ -90,8 +90,8 @@ const SingleProduct: React.FC<Props> = ({ onShopifyProduct }) => {
         as="button"
         type="button"
         onClick={() => {
-          setCountQty(prev => prev + 1);
           dispatch({ type: 'ADD_CART_ITEM', payload: productCopy });
+          setCountQty(prev => prev + 1);
         }}
       >
         Add to cart

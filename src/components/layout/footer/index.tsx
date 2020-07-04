@@ -71,6 +71,7 @@ export default styled(Footer)`
   }
   .linksAndIcons {
     ${handleFlex('column', 'center', 'center')};
+
     ul {
       padding: 0;
       background: 0;
@@ -109,6 +110,10 @@ export default styled(Footer)`
       p,h3 {
         text-align: left;
       }
+    }
+    .linksAndIcons{
+      width: 80%;
+      margin-left: auto;
     }
   `}
 `;

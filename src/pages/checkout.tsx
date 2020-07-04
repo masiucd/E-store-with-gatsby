@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { PageProps } from 'gatsby';
-import Layout from '../components/layout';
+import Layout, { Page } from '../components/layout';
+
+import Checkout from '../components/checkout/Checkout';
 interface Props {}
 
 const CheckoutPage: React.FC<PageProps> = () => {
   return (
     <Layout>
-      <h1> Checkout </h1>
+      <Page>
+        <Checkout />
+      </Page>
     </Layout>
   );
 };

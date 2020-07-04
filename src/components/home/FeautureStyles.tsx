@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { handleFlex } from '../../utils/styled/flex';
 import { below } from '../../utils/styled/media';
-
+import { animated } from 'react-spring';
 export const Wrapper = styled.div`
   ${handleFlex('column', 'center', 'center')};
   width: 100%;
@@ -56,9 +56,9 @@ export const StyledItem = styled.article`
   }
 `;
 
-export const BodyContent = styled.div`
+export const BodyContent = styled(animated.div)`
   position: absolute;
-  display: none;
+  /* display: none; */
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -67,7 +67,7 @@ export const BodyContent = styled.div`
   transition: ${props => props.theme.transition.mainTransition};
   width: 100%;
   text-align: center;
-
+  ${handleFlex('column', 'center', 'center')};
   h4 {
     color: ${({ theme: { colors } }) => colors.text};
     font-size: 3rem;
