@@ -1,10 +1,11 @@
-# Gatsby Masiu's Fits
+# Gatsby Masiu's Fits 🤟🏻🛒🛍
 
 ### E shop using Gatsby and Shopify API
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d374a159-9ee3-4b02-91a3-ee3053990fcb/deploy-status)](https://marcells-fits.netlify.app/)
 
 This app is not using any finished layout ore template, it is built from scratch. Just using Shopify API end point to store the products.
+A example how you can build your own E-commerce application with React and Gatsby js.
 
 ``` bash
   git clone Project
@@ -18,15 +19,23 @@ This app is not using any finished layout ore template, it is built from scratch
   yarn/nm install
 ```
 
-### Tools
+### Tools 🛠
 
 * Gatsby
 * Shopify
 * Typescript
 * React
 * Graph QL
+* Context API
+
+### Custom hooks that are used ⚙️😎⚛️
+
+ * useToggle
+ * useLocalStorage
 
 ##### pages/index.tsx
+
+Example of how to use Typescript together with Graphql in Gatsby
 
 ``` jsx
 import React from 'react';
