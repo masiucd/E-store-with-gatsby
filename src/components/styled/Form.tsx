@@ -28,13 +28,18 @@ export const Label = styled.label`
     height: 3rem;
     margin-right: auto;
   }
+
+  .label-row {
+    ${handleFlex('row', 'space-between', 'center')};
+    width: 80%;
+
+    span {
+      margin: 0 1rem;
+    }
+  }
 `;
 
-interface InputProps {
-  isCheckbox?: boolean;
-}
-
-export const Input = styled.input<InputProps>`
+export const Input = styled.input`
   width: 100%;
   border: 0;
   font-size: 1.6rem;

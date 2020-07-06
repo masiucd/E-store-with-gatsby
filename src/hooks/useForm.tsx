@@ -1,14 +1,5 @@
 import * as React from 'react';
 
-interface FormData {
-  cardNumber: string;
-  month: string;
-  day: string;
-  fullName: string;
-  cvv: string;
-  saveCard: boolean;
-}
-
 interface Error {}
 
 // handle = callBack function
@@ -23,14 +14,31 @@ function useForm<T, E>(handle: Function, validate: Function, formValues: T) {
   ) => {
     const { name, value } = e.target;
 
+    // setCheckedItems({...checkedItems, [event.target.name] : event.target.checked });
     setFormData({ ...formData, [name]: value });
+    // setFormData({ ...formData, [name]: value ? value : e.target.checked });
   };
 
-  React.useEffect(() => {});
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.checked });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormErrors(validate(formData));
+    setIsSubmitting(true);
+  };
+
+  React.useEffect(() => {
+    handle();
+  }, []);
 
   return {
     handleChange,
+    handleChecked,
     formErrors,
+    formData,
+    handleSubmit,
   };
 }
 
