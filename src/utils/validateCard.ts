@@ -1,10 +1,14 @@
 // Validate function for validateCard our formValues
 
-interface Error {
+interface ValidateMessage {
   cardNumberErrors?: string;
+
   cardNameErrors?: string;
+
   monthError?: string;
+
   dayError?: string;
+
   cvvError?: string;
 }
 
@@ -18,8 +22,8 @@ interface FormData {
 }
 
 function validateCard(values: FormData) {
-  const errors: Error = {};
-  let regex = /^4[0-9]{12}(?:[0-9]{3})?$/;
+  const errors: ValidateMessage = {};
+  let regex = /^4\d{3}([\ \-]?)\d{4}\1\d{4}\1\d{4}$/;
 
   if (!values['cardNumber']) {
     errors.cardNumberErrors = `Card numbers is required`;

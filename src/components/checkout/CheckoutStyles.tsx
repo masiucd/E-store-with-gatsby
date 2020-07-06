@@ -9,7 +9,7 @@ export const CheckOutStyles = styled.div`
 
 export const CheckoutGrid = styled.section`
   ${handleFlex('column', 'center', 'center')};
-  border: 2px solid red;
+
   padding: 1rem;
   margin: 2rem 0;
 

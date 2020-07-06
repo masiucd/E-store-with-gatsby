@@ -4,6 +4,7 @@ import { BtnPrimary } from '../styled/Buttons';
 import useForm from '../../hooks/useForm';
 import { formData as formDataForCard } from '../../utils/data';
 import validateCard from '../../utils/validateCard';
+import { useCartDispatch } from '../../context/cart/CartProvider';
 
 export interface ICheckoutForm {
   onLabelForCardNumber?: string;
@@ -14,18 +15,23 @@ export interface ICheckoutForm {
   onLabelSaveCard?: string;
 }
 
-interface FormData {
-  cardNumber: string;
-  month: string;
-  day: string;
-  name: string;
-  cvv: string;
-  isSave: boolean;
-}
-
 export default function CheckoutForm(props: ICheckoutForm) {
+  // TODO: Perhaps for deleting!
+  const [formData, setFormData] = React.useState(formDataForCard);
+
+  const dispatch = useCartDispatch();
   const handleSubmit = () => {
-    console.log('is submitting');
+    dispatch({
+      type: 'OPEN_CONFIRM_CARD',
+    });
+    setFormData({
+      name: '',
+      cardNumber: '',
+      month: '',
+      day: '',
+      cvv: '',
+      isSave: false,
+    });
   };
 
   const {
@@ -34,7 +40,7 @@ export default function CheckoutForm(props: ICheckoutForm) {
     handleChecked,
     formErrors,
     formData: data,
-  } = useForm(handleSubmit, validateCard, formDataForCard);
+  } = useForm(handleSubmit, validateCard, formData);
 
   const {
     onLabelForCardNumber,
@@ -61,16 +67,7 @@ export default function CheckoutForm(props: ICheckoutForm) {
   return (
     <Form onSubmit={submit}>
       <Label formErrors={formErrors}>
-        <span
-          style={{
-            color:
-              formErrors &&
-              formErrors.cardNumberErrors &&
-              'rgba(229, 57, 53, 1)',
-          }}
-        >
-          {options.labelForCardNumber}
-        </span>
+        <span>{options.labelForCardNumber}</span>
         <Input
           type="text"
           name="cardNumber"
@@ -81,23 +78,10 @@ export default function CheckoutForm(props: ICheckoutForm) {
           <ErrorMsg>{formErrors.cardNumberErrors}</ErrorMsg>
         )}
       </Label>
-      <Label>
-        <div
-          className="label-row"
-          style={{
-            flexDirection:
-              formErrors.dayError || formErrors.monthError ? 'column' : 'row',
-          }}
-        >
+      <Label formErrors={formErrors}>
+        <div className="label-row">
           <span>{options.labelForMonth}</span>
           <span>{options.labelForDay}</span>
-
-          {formErrors && formErrors.monthError && (
-            <ErrorMsg>{formErrors.monthError}</ErrorMsg>
-          )}
-          {formErrors && formErrors.dayError && (
-            <ErrorMsg>{formErrors.dayError}</ErrorMsg>
-          )}
         </div>
         <div className="select">
           <Select name="month" value={data.month} onChange={handleChange}>
@@ -118,7 +102,7 @@ export default function CheckoutForm(props: ICheckoutForm) {
           </Select>
         </div>
       </Label>
-      <Label>
+      <Label formErrors={formErrors}>
         <span>{options.labelForName}</span>
         <Input
           type="text"
@@ -130,7 +114,7 @@ export default function CheckoutForm(props: ICheckoutForm) {
           <ErrorMsg>{formErrors.cardNameErrors}</ErrorMsg>
         )}
       </Label>
-      <Label>
+      <Label formErrors={formErrors}>
         <span>{options.labelForCvv}</span>
         <Input
           type="text"
@@ -142,7 +126,7 @@ export default function CheckoutForm(props: ICheckoutForm) {
           <ErrorMsg>{formErrors.cvvError}</ErrorMsg>
         )}
       </Label>
-      <Label>
+      <Label formErrors={formErrors}>
         <span>{options.labelForSaveCard}</span>
         <Input
           type="checkbox"

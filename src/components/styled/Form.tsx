@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { handleFlex } from '../../utils/styled/flex';
+import { handleErrorUi } from '../../utils/styled/helpers';
 
 export const Form = styled.form`
   ${handleFlex('column', 'center', 'center')};
@@ -17,19 +18,12 @@ interface FormError {
 interface LabelProps {
   formErrors?: FormError;
 }
-const handleErrorBorder = (errors: FormError) => {
-  return css`
-    border: ${errors.cardNameErrors} || ${errors.cardNameErrors};
-  `;
-};
 
 export const Label = styled.label<LabelProps>`
   ${handleFlex('column', 'center', 'center')};
+  transition: ${({ theme }) => theme.transition.mainTransition};
   padding: 1.5rem 0;
-  ${props =>
-    props.formErrors &&
-    props.formErrors.cardNameErrors &&
-    'border: 2px solid red'};
+  ${props => props.formErrors && handleErrorUi(props.formErrors)};
   width: 90%;
   span {
     font-size: 1.6rem;
@@ -67,6 +61,7 @@ export const Input = styled.input`
   outline: 0;
   border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
   transition: ${({ theme }) => theme.transition.quickTransition};
+  transition: ${({ theme }) => theme.transition.mainTransition};
   &:focus {
     ${({ theme }) => theme.shadow.elevations[2]};
     border-bottom: 3px solid ${({ theme }) => theme.colors.secondary};
@@ -92,5 +87,8 @@ export const Select = styled.select`
 `;
 
 export const ErrorMsg = styled.span`
-  color: rgba(229, 57, 53, 1);
+  color: rgba(255, 82, 82, 0.8);
+  transition: ${({ theme }) => theme.transition.mainTransition};
+  font-weight: 700;
+  text-shadow: 1px 2px #ccc;
 `;

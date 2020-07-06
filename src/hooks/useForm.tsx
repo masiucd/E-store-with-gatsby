@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface Error {
+interface ErrorOreSuccess {
   cardNumberErrors?: string;
   cardNameErrors?: string;
   monthError?: string;
@@ -9,10 +9,10 @@ interface Error {
 }
 
 // handle = callBack function
-function useForm<T, E>(handle: Function, validate: Function, formValues: T) {
+function useForm<T>(handle: Function, validate: Function, formValues: T) {
   const [formData, setFormData] = React.useState<T>(formValues);
 
-  const [formErrors, setFormErrors] = React.useState<Error>({});
+  const [formErrors, setFormErrors] = React.useState<ErrorOreSuccess>({});
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
 
   const handleChange = (
@@ -36,8 +36,23 @@ function useForm<T, E>(handle: Function, validate: Function, formValues: T) {
   };
 
   React.useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+    // if (
+    //   !formErrors['cardNameErrors'] &&
+    //   !formErrors['cardNumberErrors'] &&
+    //   !formErrors['cvvError'] &&
+    //   !formErrors['dayError'] &&
+    //   !formErrors['monthError']
+    // ) {
+    //   setFormErrors({});
+    //   handle();
+    //   setFormData(formData);
+    // }
+
+    console.log(formErrors);
+
+    if (Object.values(formErrors).length === 0 && isSubmitting) {
       handle();
+
       setFormData(formData);
     }
   }, [formErrors]);

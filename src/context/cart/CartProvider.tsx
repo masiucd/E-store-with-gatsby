@@ -49,11 +49,12 @@ type Action =
   | { type: 'CLEAR_CART' }
   | { type: 'DELETE_ITEM_FROM_CART'; payload: string } // id - DELETE thw whole product from cart
   | { type: 'REMOVE_CART_ITEM'; payload: CartItem }
-  | { type: 'IS_OPEN' };
+  | { type: 'IS_OPEN' }
+  | { type: 'OPEN_CONFIRM_CARD' };
 
 type Dispatch = (action: Action) => void;
 
-type State = { cart: CartItem[]; isOpen: boolean };
+type State = { cart: CartItem[]; isOpen: boolean; isOpenConfirm: boolean };
 
 const CartStateContext = React.createContext<State | undefined>(undefined);
 const CartDispatchContext = React.createContext<Dispatch | undefined>(
@@ -62,8 +63,8 @@ const CartDispatchContext = React.createContext<Dispatch | undefined>(
 
 const initialState: State = {
   cart: [],
-
   isOpen: false,
+  isOpenConfirm: false,
 };
 
 function cartReducer(state: State, action: Action) {
@@ -97,6 +98,12 @@ function cartReducer(state: State, action: Action) {
       return {
         ...state,
         cart: action.payload,
+      };
+    }
+    case 'OPEN_CONFIRM_CARD': {
+      return {
+        ...state,
+        isOpenConfirm: !state.isOpenConfirm,
       };
     }
     default: {

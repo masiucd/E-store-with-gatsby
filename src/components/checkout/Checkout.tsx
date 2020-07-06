@@ -5,6 +5,7 @@ import Title from '../elements/Title';
 import { countCartItems } from '../../context/cart/utils';
 import CheckoutCart from './CheckoutCart';
 import CheckoutForm from './CheckoutForm';
+import Modal from '../modal';
 
 interface Props {}
 
@@ -23,6 +24,7 @@ const Checkout: React.FC<Props> = () => {
         <CheckoutCart />
         <CheckoutForm />
       </CheckoutGrid>
+      <Modal />
     </CheckOutStyles>
   );
 };
