@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Select, Form, Label, Input } from '../styled/Form';
+import { Select, Form, Label, Input, ErrorMsg } from '../styled/Form';
 import { BtnPrimary } from '../styled/Buttons';
 import useForm from '../../hooks/useForm';
+import { formData as formDataForCard } from '../../utils/data';
+import validateCard from '../../utils/validateCard';
 
 export interface ICheckoutForm {
   onLabelForCardNumber?: string;
@@ -22,25 +24,17 @@ interface FormData {
 }
 
 export default function CheckoutForm(props: ICheckoutForm) {
-  const err = () => {};
   const handleSubmit = () => {
     console.log('is submitting');
   };
-  const [formData, setFormData] = React.useState<FormData>({
-    cardNumber: '',
-    month: '',
-    day: '',
-    name: '',
-    cvv: '',
-    isSave: false,
-  });
+
   const {
     handleChange,
     handleSubmit: submit,
     handleChecked,
     formErrors,
     formData: data,
-  } = useForm(handleSubmit, err, formData);
+  } = useForm(handleSubmit, validateCard, formDataForCard);
 
   const {
     onLabelForCardNumber,
@@ -66,19 +60,44 @@ export default function CheckoutForm(props: ICheckoutForm) {
 
   return (
     <Form onSubmit={submit}>
-      <Label>
-        <span>{options.labelForCardNumber}</span>
+      <Label formErrors={formErrors}>
+        <span
+          style={{
+            color:
+              formErrors &&
+              formErrors.cardNumberErrors &&
+              'rgba(229, 57, 53, 1)',
+          }}
+        >
+          {options.labelForCardNumber}
+        </span>
         <Input
           type="text"
           name="cardNumber"
           value={data.cardNumber}
           onChange={handleChange}
         />
+        {formErrors && formErrors.cardNumberErrors && (
+          <ErrorMsg>{formErrors.cardNumberErrors}</ErrorMsg>
+        )}
       </Label>
       <Label>
-        <div className="label-row">
+        <div
+          className="label-row"
+          style={{
+            flexDirection:
+              formErrors.dayError || formErrors.monthError ? 'column' : 'row',
+          }}
+        >
           <span>{options.labelForMonth}</span>
           <span>{options.labelForDay}</span>
+
+          {formErrors && formErrors.monthError && (
+            <ErrorMsg>{formErrors.monthError}</ErrorMsg>
+          )}
+          {formErrors && formErrors.dayError && (
+            <ErrorMsg>{formErrors.dayError}</ErrorMsg>
+          )}
         </div>
         <div className="select">
           <Select name="month" value={data.month} onChange={handleChange}>
@@ -107,6 +126,9 @@ export default function CheckoutForm(props: ICheckoutForm) {
           value={data.name}
           onChange={handleChange}
         />
+        {formErrors && formErrors.cardNameErrors && (
+          <ErrorMsg>{formErrors.cardNameErrors}</ErrorMsg>
+        )}
       </Label>
       <Label>
         <span>{options.labelForCvv}</span>
@@ -116,6 +138,9 @@ export default function CheckoutForm(props: ICheckoutForm) {
           value={data.cvv}
           onChange={handleChange}
         />
+        {formErrors && formErrors.cvvError && (
+          <ErrorMsg>{formErrors.cvvError}</ErrorMsg>
+        )}
       </Label>
       <Label>
         <span>{options.labelForSaveCard}</span>

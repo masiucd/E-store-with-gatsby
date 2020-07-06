@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { handleFlex } from '../../utils/styled/flex';
 
 export const Form = styled.form`
@@ -6,10 +6,30 @@ export const Form = styled.form`
   padding: 2rem 1rem;
   width: 100%;
 `;
-export const Label = styled.label`
+
+interface FormError {
+  cardNumberErrors?: string;
+  cardNameErrors?: string;
+  monthError?: string;
+  dayError?: string;
+  cvvError?: string;
+}
+interface LabelProps {
+  formErrors?: FormError;
+}
+const handleErrorBorder = (errors: FormError) => {
+  return css`
+    border: ${errors.cardNameErrors} || ${errors.cardNameErrors};
+  `;
+};
+
+export const Label = styled.label<LabelProps>`
   ${handleFlex('column', 'center', 'center')};
   padding: 1.5rem 0;
-
+  ${props =>
+    props.formErrors &&
+    props.formErrors.cardNameErrors &&
+    'border: 2px solid red'};
   width: 90%;
   span {
     font-size: 1.6rem;
@@ -69,4 +89,8 @@ export const Select = styled.select`
   display: block;
   border: 2px solid ${({ theme }) => theme.colors.primary};
   cursor: pointer;
+`;
+
+export const ErrorMsg = styled.span`
+  color: rgba(229, 57, 53, 1);
 `;

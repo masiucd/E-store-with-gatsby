@@ -1,12 +1,18 @@
 import * as React from 'react';
 
-interface Error {}
+interface Error {
+  cardNumberErrors?: string;
+  cardNameErrors?: string;
+  monthError?: string;
+  dayError?: string;
+  cvvError?: string;
+}
 
 // handle = callBack function
 function useForm<T, E>(handle: Function, validate: Function, formValues: T) {
   const [formData, setFormData] = React.useState<T>(formValues);
 
-  const [formErrors, setFormErrors] = React.useState<E | null>(null);
+  const [formErrors, setFormErrors] = React.useState<Error>({});
   const [isSubmitting, setIsSubmitting] = React.useState<boolean>(false);
 
   const handleChange = (
@@ -30,8 +36,11 @@ function useForm<T, E>(handle: Function, validate: Function, formValues: T) {
   };
 
   React.useEffect(() => {
-    handle();
-  }, []);
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+      handle();
+      setFormData(formData);
+    }
+  }, [formErrors]);
 
   return {
     handleChange,
