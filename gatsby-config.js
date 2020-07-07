@@ -24,6 +24,24 @@ module.exports = {
         path: '/about',
       },
     ],
+    faq: [
+      {
+        q: 'How long does the order take?',
+        a: 'depends where you live , but at most 2 weeks',
+      },
+      {
+        q: 'How can you have a free shipping?',
+        a: 'Because we are awesome 🧨',
+      },
+      {
+        q: 'Do you take Bitcoin payment?',
+        a: 'Not now, but in the feature we will accept crypto-currencies',
+      },
+      {
+        q: 'Can I look for a job?',
+        a: 'Yes you can contact us here https://marcellable.com',
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-stripe',
