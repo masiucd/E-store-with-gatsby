@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageProps, graphql } from 'gatsby';
-import Layout, { Page } from '../components/layout';
+import Layout from '../components/layout';
 import Seo from '../components/SEO/Seo';
 import FeatureProducts from '../components/home/FeatureProducts';
 import Hero from '../components/elements/Hero';
@@ -27,8 +27,7 @@ const IndexPage: React.FC<PageProps<Props>> = ({ data }) => {
       <Hero className="Main hero" isLarge>
         <Title className="Home__Title" mainTitle={title} needCta />
       </Hero>
-      {/* <Page>
-      </Page> */}
+
       <FeatureProducts />
     </Layout>
   );

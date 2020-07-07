@@ -15,7 +15,8 @@ interface Props {
 
 export const Page = styled.div`
   max-width: ${({ theme }) => theme.size.maxWidth};
-  margin: 0 auto;
+  margin: 14em auto;
+  height: 100%;
 `;
 
 const Main = styled.main`
