@@ -12,12 +12,16 @@ interface Props {}
 const Checkout: React.FC<Props> = () => {
   const { cart } = useCartState();
 
+  let itemsInCart = countCartItems(cart);
+
   return (
     <CheckOutStyles>
       <Title
         className="Checkout-title"
         mainTitle="your Order"
-        secondaryTitle={`You have ${countCartItems(cart)} items in your cart`}
+        secondaryTitle={`You have ${itemsInCart} item${
+          itemsInCart === 1 ? '' : "'s"
+        } in your cart`}
         textColor="#333"
       />
       <CheckoutGrid>

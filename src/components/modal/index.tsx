@@ -6,6 +6,8 @@ import Title from '../elements/Title';
 import { handleFlex } from '../../utils/styled/flex';
 import { BtnPrimary } from '../styled/Buttons';
 import { countCartTotalPricePerItem } from '../../context/cart/utils';
+import { navigate } from '@reach/router';
+import { below } from '../../utils/styled/media';
 
 interface Props {}
 
@@ -15,8 +17,11 @@ const Modal: React.FC<Props> = () => {
 
   const handleSuccess = () => {
     dispatch({ type: 'OPEN_CONFIRM_CARD' });
-
     localStorage.clear();
+    navigate('/');
+  };
+  const handleDecline = () => {
+    dispatch({ type: 'OPEN_CONFIRM_CARD' });
   };
 
   const { opacity, x } = useSpring({
@@ -29,7 +34,7 @@ const Modal: React.FC<Props> = () => {
     <ModalStyles
       style={{
         opacity,
-        transform: x.interpolate(x => `translate3d(0,${x * 100}%,0)`),
+        // transform: x.interpolate(x => `translate3d(0,${x * 100}%,0)`),
       }}
     >
       <ModalBody>
@@ -39,10 +44,17 @@ const Modal: React.FC<Props> = () => {
           className="modal title"
           textColor="#333"
         />
-        <h4>Total Price {countCartTotalPricePerItem(cart)} SEK</h4>
-        <BtnPrimary onClick={handleSuccess} as="button">
-          Confirm
-        </BtnPrimary>
+        <h4>
+          Total Price <span>{countCartTotalPricePerItem(cart)} SEK </span>
+        </h4>
+        <div className="btn-wrap">
+          <BtnPrimary onClick={handleSuccess} as="button">
+            Confirm
+          </BtnPrimary>
+          <BtnPrimary onClick={handleDecline} as="button">
+            Decline
+          </BtnPrimary>
+        </div>
       </ModalBody>
     </ModalStyles>
   );
@@ -68,6 +80,21 @@ const ModalBody = styled.section`
   h4 {
     font-size: 2rem;
     margin: 2rem 0;
+    border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+    padding: 2rem 0;
+    span {
+      font-weight: 600;
+      color: ${({ theme }) => theme.colors.secondary};
+      text-shadow: 1px 1px 2px #333;
+    }
+  }
+  .btn-wrap {
+    width: 70%;
+    ${handleFlex('row', 'space-evenly', 'center')};
+
+    ${below.small`
+      ${handleFlex('column', 'center', 'center')};
+    `}
   }
 `;
 

@@ -120,14 +120,16 @@ const CartProvider: React.FC<Props> = ({ children }) => {
   let memoizedCart = React.useMemo(() => getState(), [state.cart]);
 
   React.useEffect(() => {
-    let localStoregaCart = JSON.parse(localStorage.getItem('cart') || '');
+    let localStoregaCart: CartItem[] = JSON.parse(localStorage.getItem('cart'));
+
     if (localStoregaCart) {
       dispatch({
         type: 'SAVED_LOCAL_STORAGE_CART',
         payload: localStoregaCart,
       });
     } else {
-      localStorage.clear();
+      // localStorage.clear();
+      return;
     }
   }, []);
 
