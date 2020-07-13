@@ -45,7 +45,7 @@ const FaqItem: React.FC<Props> = ({ data }) => {
     <FaqItemStyles
       style={{
         opacity,
-        transform: x.interpolate(x => `translate3d(${x * -1000}%,0,0)`),
+        transform: x.interpolate(x => `translate3d(${x * -100}%,0,0)`),
       }}
     >
       <div id="open" onClick={toggle}>

@@ -3,6 +3,7 @@ import { handleFlex } from '../../utils/styled/flex';
 import { above, below } from '../../utils/styled/media';
 
 export const AboutStyles = styled.div``;
+
 export const AboutPreviewGrid = styled.div`
   grid-gap: 15px;
   padding: 1rem;

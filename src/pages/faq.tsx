@@ -3,7 +3,8 @@ import { PageProps, graphql } from 'gatsby';
 import Layout, { Page } from '../components/layout';
 import Faq from '../components/faq';
 import Title from '../components/elements/Title';
-import { FaqStyles } from '../components/faq/faqStyles';
+import styled from 'styled-components';
+import { handleFlex } from '../utils/styled/flex';
 
 interface FaqData {
   q: string;
@@ -25,7 +26,7 @@ const FaqPage: React.FC<PageProps<Query>> = ({ data }) => {
   } = data;
   return (
     <Layout>
-      <FaqStyles>
+      <FaqWrapper>
         <Title
           mainTitle={siteMetadata.title}
           secondaryTitle="Common Questions"
@@ -33,10 +34,15 @@ const FaqPage: React.FC<PageProps<Query>> = ({ data }) => {
           textColor="#333"
         />
         <Faq faqData={siteMetadata.faq} />
-      </FaqStyles>
+      </FaqWrapper>
     </Layout>
   );
 };
+
+const FaqWrapper = styled(Page)`
+  ${handleFlex('column', 'center', 'center')};
+  width: 90%;
+`;
 
 export const PAGE_QUERY = graphql`
   {
