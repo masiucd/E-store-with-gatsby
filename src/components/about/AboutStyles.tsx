@@ -29,5 +29,6 @@ export const AboutStylesContent = styled.div`
   margin: 3rem 0;
   p {
     font-size: 2.4rem;
+    padding: 2rem;
   }
 `;

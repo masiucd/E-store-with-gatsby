@@ -4,6 +4,8 @@ import Layout, { Page } from '../components/layout';
 import About from '../components/about';
 import Title from '../components/elements/Title';
 import { IFluidObject } from 'gatsby-background-image';
+import styled from 'styled-components';
+import { handleFlex } from '../utils/styled/flex';
 
 interface Image {
   localFile: {
@@ -40,7 +42,7 @@ interface Query {
 const AboutPage: React.FC<PageProps<Query>> = ({ data }) => {
   return (
     <Layout>
-      <Page>
+      <PageAboutWrapper>
         <Title
           mainTitle={data.site.siteMetadata.title}
           secondaryTitle={data.site.siteMetadata.aboutUs.title}
@@ -51,10 +53,15 @@ const AboutPage: React.FC<PageProps<Query>> = ({ data }) => {
           aboutContent={data.site.siteMetadata.aboutUs}
           onEdges={data.allShopifyProduct}
         />
-      </Page>
+      </PageAboutWrapper>
     </Layout>
   );
 };
+
+const PageAboutWrapper = styled(Page)`
+  ${handleFlex('column', 'center', 'center')}
+  max-width: 900px;
+`;
 
 export const ABOUT_QUERY = graphql`
   {
